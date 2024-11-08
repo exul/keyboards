@@ -1,0 +1,313 @@
+units:
+  $default_width: cx
+  $default_height: cy
+
+  paddingX: cx+0.1
+  paddingY: cy+0.1
+  wt: 2
+  thumb_shift: 0.2cx
+  thumb_space: -0.5
+  screw_size: 2
+points:
+  key:
+    padding: paddingY
+    spread: paddingX
+  zones:
+    matrix:
+      columns:
+        outer:
+          key:
+            column_net: P106
+            splay: 4
+        pinky:
+          key:
+            column_net: P104
+        ring:
+          key:
+            column_net: P011
+            splay: -4
+            stagger: 0.6cy
+        middle:
+          key:
+            column_net: P100
+            stagger: 0.25cy
+        index:
+          key:
+            column_net: P024
+            stagger: -0.25cy
+        inner:
+          key:
+            column_net: P022
+            stagger: -0.25cy
+      rows:
+        bottom:
+          row_net: P111
+        home:
+          row_net: P010
+        top:
+          row_net: P009
+    thumbs:
+      anchor:
+        ref: matrix_index_bottom
+        shift: [0.25cx, -2.0cy]
+      key:
+        width: 1.5cx
+      columns:
+        home:
+          key:
+            splay: 70
+            shift: [0, -cy+thumb_shift+thumb_space]
+            column_net: P104
+        outer:
+          key:
+            shift: [-cx, -2cy+thumb_shift+2*thumb_space]
+            column_net: P106
+      rows:
+        cluster:
+          row_net: P113
+outlines:
+  board:
+    - what: polygon
+      fillet: 2
+      points:
+        - ref: matrix_outer_bottom
+          shift: [-0.6cx, -0.6cy]
+        - ref: matrix_pinky_bottom
+          shift: [3.51cx, -0.6cy]
+        - ref: matrix_pinky_bottom
+          shift: [2.8cx, -2.35cy]
+        - ref: thumbs_outer_cluster
+          shift: [-0.8cx, -0.84cy]
+        - ref: matrix_inner_top
+          shift: [2.25cx, -2.8cy]
+        - ref: matrix_inner_top
+          shift: [2.25cx, 0.6cy]
+        - ref: matrix_inner_top
+          shift: [-0.4cx, 0.6cy]
+        - ref: matrix_index_top
+          shift: [0.6cx, 0.6cy]
+        - ref: matrix_index_top
+          shift: [-0.4cx, 0.6cy]
+        - ref: matrix_middle_top
+          shift: [0.6cx, 0.6cy]
+        - ref: matrix_middle_top
+          shift: [-0.6cx, 0.6cy]
+        - ref: matrix_ring_top
+          shift: [0.4cx, 0.6cy]
+        - ref: matrix_ring_top
+          shift: [-0.6cx, 0.6cy]
+        - ref: matrix_pinky_top
+          shift: [0.4cx, 0.6cy]
+        - ref: matrix_pinky_top
+          shift: [-0.6cx, 0.6cy]
+        - ref: matrix_outer_top
+          shift: [-0.6cx, 0.6cy]
+
+  xlBoard:
+    - what: polygon
+      fillet: 2
+      points:
+        - ref: matrix_outer_bottom
+          shift: [-0.6cx-wt, -0.6cy-wt]
+        - ref: matrix_pinky_bottom
+          shift: [3.51cx-wt, -0.6cy-wt]
+        - ref: matrix_pinky_bottom
+          shift: [2.8cx-wt, -2.35cy-wt]
+        - ref: thumbs_outer_cluster
+          shift: [-0.8cx-wt, -0.84cy-wt]
+        - ref: matrix_inner_top
+          shift: [2.25cx+wt, -2.8cy+wt]
+        - ref: matrix_inner_top
+          shift: [2.25cx+wt, 0.6cy+wt]
+        - ref: matrix_inner_top
+          shift: [-0.4cx+wt, 0.6cy+wt]
+        - ref: matrix_index_top
+          shift: [0.6cx+wt, 0.6cy+wt]
+        - ref: matrix_index_top
+          shift: [-0.4cx+wt, 0.6cy+wt]
+        - ref: matrix_middle_top
+          shift: [0.6cx+wt, 0.6cy+wt]
+        - ref: matrix_middle_top
+          shift: [-0.6cx-wt, 0.6cy+wt]
+        - ref: matrix_ring_top
+          shift: [0.4cx-wt, 0.6cy+wt]
+        - ref: matrix_ring_top
+          shift: [-0.6cx-wt, 0.6cy+wt]
+        - ref: matrix_pinky_top
+          shift: [0.4cx-wt, 0.6cy+wt]
+        - ref: matrix_pinky_top
+          shift: [-0.6cx, 0.6cy+wt]
+        - ref: matrix_outer_top
+          shift: [-0.6cx-wt, 0.6cy+wt]
+
+  battery_cutout:
+    - what: rectangle
+      fillet: 2
+      size: [22, 32]
+      where: matrix_inner_bottom
+      adjust:
+        shift: [cx+4, -0.5cy-5]
+        rotate: -20
+  keys:
+    - what: rectangle
+      fillet: 2
+      where: true
+      bound: false
+      size: [13.6+0.7, 13.8+0.6]
+  board_key_cutouts:
+    - name: xlBoard
+    - operation: subtract
+      name: keys
+  board_combined:
+    - name: board
+    - operation: subtract
+      name: battery_cutout
+  board_preview:
+    - name: board
+    - operation: subtract
+      name: keys
+    - operation: subtract
+      name: battery_cutout
+
+pcbs:
+  board:
+    outlines:
+      main:
+        outline: board_combined
+    footprints:
+      choc_hotswap:
+        what: choc
+        where: true
+        params:
+          keycaps: true
+          reverse: false
+          hotswap: true
+          from: "{{column_net}}"
+          to: "{{colrow}}"
+      diode:
+        what: diode
+        where: true
+        params:
+          from: "{{colrow}}"
+          to: "{{row_net}}"
+        adjust:
+          shift: [0, -5]
+      holeTopLeft:
+        what: mounting_hole_plated
+        where:
+          ref: [matrix_outer_top]
+          shift: [0.5cx, 0]
+      holeBottomLeft:
+        what: mounting_hole_plated
+        where:
+          ref: [matrix_outer_bottom]
+          shift: [0.5cx, 0]
+      holeTopMiddle:
+        what: mounting_hole_plated
+        where:
+          ref: [matrix_ring_top]
+          shift: [0.5cx, 0]
+      holeBottomMiddle:
+        what: mounting_hole_plated
+        where:
+          ref: [matrix_ring_bottom]
+          shift: [0.5cx, 0]
+      holeTopRight:
+        what: mounting_hole_plated
+        where:
+          ref: [matrix_inner_top]
+          shift: [-0.5cx, 0]
+      holeBottomRight:
+        what: mounting_hole_plated
+        where:
+          ref: [matrix_inner_bottom]
+          shift: [-0.5cx, 0]
+      holeThumbMiddle:
+        what: mounting_hole_plated
+        where:
+          ref: [thumbs_home_cluster]
+          shift: [0.5cx, -0.5cy]
+      nice_nano:
+        what: nice_nano
+        where:
+          ref: matrix_inner_top
+          shift: [1.5cx+2, 0.25cy-12]
+        params:
+          reversable: false
+          label: false
+          view: false
+      display_nice_view:
+        what: display_nice_view
+        params:
+          reversible: false
+          include_labels: false
+          MOSI: P029
+          SCK: P031
+          CS: P017
+        where:
+          ref: matrix_inner_top
+          shift: [1.55cx+1, -0.5cy-1]
+      jstph:
+        what: jstph
+        where:
+          ref: matrix_inner_home
+          shift: [0.5cx+5.5, 0.5cy]
+        params:
+            side: B
+            pos: BAT+
+            neg: GND
+      battery_switch:
+        what: slider
+        where:
+          ref: matrix_inner_top
+          shift: [0.525cx+5, 0.5cy-2.5]
+        params:
+          side: B
+          from: BAT+
+          to: RAW
+      reset:
+        what: button
+        params:
+          from: GND
+          to: RST
+        where:
+          ref: matrix_inner_top
+          shift: [1.6cx, 0.3cy]
+
+cases:
+  top:
+    - name: board_key_cutouts
+      extrude: 1
+  bottom:
+    - name: board
+      extrude: 1
+  xlBottom:
+    - name: xlBoard
+      extrude: 1
+  _outerWall:
+    - name: xlBoard
+      extrude: 8
+  _innerWall:
+    - name: board
+      extrude: 8
+  wall:
+    - what: case
+      name: _outerWall
+      operation: add
+    - what: case
+      name: _innerWall
+      operation: subtract
+  case_top:
+    - what: case
+      name: top
+      operation: add
+    - what: case
+      name: wall
+      operation: add
+  case_bottom:
+    - what: case
+      name: xlBottom
+      operation: add
+    - what: case
+      name: wall
+      operation: add
