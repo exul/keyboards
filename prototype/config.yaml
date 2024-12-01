@@ -1,3 +1,5 @@
+meta:
+  engine: 4.1.0
 units:
   $default_width: cx
   $default_height: cy
@@ -17,35 +19,38 @@ points:
       columns:
         outer:
           key:
-            column_net: P106
+            column_net: P10
             splay: 4
         pinky:
           key:
-            column_net: P104
+            column_net: P16
         ring:
           key:
-            column_net: P011
+            column_net: P14
             splay: -4
+            spread: paddingY+1.5
             stagger: 0.6cy
         middle:
           key:
-            column_net: P100
+            column_net: P18
             stagger: 0.25cy
         index:
           key:
-            column_net: P024
+            column_net: P19
+            splay: -2
+            spread: paddingY+1.5
             stagger: -0.25cy
         inner:
           key:
-            column_net: P022
+            column_net: P20
             stagger: -0.25cy
       rows:
         bottom:
-          row_net: P111
+          row_net: P5
         home:
-          row_net: P010
+          row_net: P4
         top:
-          row_net: P009
+          row_net: P3
     thumbs:
       anchor:
         ref: matrix_index_bottom
@@ -57,14 +62,14 @@ points:
           key:
             splay: 70
             shift: [0, -cy+thumb_shift+thumb_space]
-            column_net: P104
+            column_net: P16
         outer:
           key:
             shift: [-cx, -2cy+thumb_shift+2*thumb_space]
-            column_net: P106
+            column_net: P10
       rows:
         cluster:
-          row_net: P113
+          row_net: P6
 outlines:
   board:
     - what: polygon
@@ -73,9 +78,9 @@ outlines:
         - ref: matrix_outer_bottom
           shift: [-0.6cx, -0.6cy]
         - ref: matrix_pinky_bottom
-          shift: [3.51cx, -0.6cy]
+          shift: [2.45cx, -0.6cy]
         - ref: matrix_pinky_bottom
-          shift: [2.8cx, -2.35cy]
+          shift: [1.85cx, -1.9cy]
         - ref: thumbs_outer_cluster
           shift: [-0.8cx, -0.84cy]
         - ref: matrix_inner_top
@@ -110,9 +115,9 @@ outlines:
         - ref: matrix_outer_bottom
           shift: [-0.6cx-wt, -0.6cy-wt]
         - ref: matrix_pinky_bottom
-          shift: [3.51cx-wt, -0.6cy-wt]
+          shift: [2.45cx-wt, -0.6cy-wt]
         - ref: matrix_pinky_bottom
-          shift: [2.8cx-wt, -2.35cy-wt]
+          shift: [1.85cx-wt, -1.9cy-wt]
         - ref: thumbs_outer_cluster
           shift: [-0.8cx-wt, -0.84cy-wt]
         - ref: matrix_inner_top
@@ -171,19 +176,37 @@ outlines:
 
 pcbs:
   board:
+    template: kicad8
     outlines:
       main:
         outline: board_combined
     footprints:
       choc_hotswap:
-        what: choc
+        what: ceoloide/switch_choc_v1_v2
         where: true
         params:
-          keycaps: true
-          reverse: false
+          reversible: true
           hotswap: true
+          include_stabilizer_pad: false
+          include_keycap: false
+          keycap_height: cy
+          keycap_width: cx
           from: "{{column_net}}"
           to: "{{colrow}}"
+      scrollwheel:
+        what: ceoloide/backlog/mrzealot/scrollwheel
+        where:
+          ref: [thumbs_home_cluster]
+          shift: [0, cy+1]
+          rotate: -90
+        params:
+          reverse: true
+          from: P14
+          to: P6
+          A: P2
+          B: GND
+          C: P21
+          D: undef_ENCB
       diode:
         what: diode
         where: true
@@ -193,60 +216,83 @@ pcbs:
         adjust:
           shift: [0, -5]
       holeTopLeft:
-        what: mounting_hole_plated
+        what: ceoloide/mounting_hole_plated
         where:
           ref: [matrix_outer_top]
           shift: [0.5cx, 0]
       holeBottomLeft:
-        what: mounting_hole_plated
+        what: ceoloide/mounting_hole_plated
         where:
           ref: [matrix_outer_bottom]
           shift: [0.5cx, 0]
       holeTopMiddle:
-        what: mounting_hole_plated
+        what: ceoloide/mounting_hole_plated
         where:
           ref: [matrix_ring_top]
           shift: [0.5cx, 0]
       holeBottomMiddle:
-        what: mounting_hole_plated
+        what: ceoloide/mounting_hole_plated
         where:
           ref: [matrix_ring_bottom]
           shift: [0.5cx, 0]
       holeTopRight:
-        what: mounting_hole_plated
+        what: ceoloide/mounting_hole_plated
         where:
           ref: [matrix_inner_top]
           shift: [-0.5cx, 0]
       holeBottomRight:
-        what: mounting_hole_plated
+        what: ceoloide/mounting_hole_plated
         where:
           ref: [matrix_inner_bottom]
           shift: [-0.5cx, 0]
       holeThumbMiddle:
-        what: mounting_hole_plated
+        what: ceoloide/mounting_hole_plated
         where:
           ref: [thumbs_home_cluster]
           shift: [0.5cx, -0.5cy]
-      nice_nano:
-        what: nice_nano
+      mcu_nice_nano:
+        what: ceoloide/mcu_nice_nano
         where:
           ref: matrix_inner_top
           shift: [1.5cx+2, 0.25cy-12]
         params:
-          reversable: false
-          label: false
-          view: false
+          reversible: true
       display_nice_view:
-        what: display_nice_view
+        what: ceoloide/display_nice_view
         params:
-          reversible: false
+          reversible: true
           include_labels: false
-          MOSI: P029
-          SCK: P031
-          CS: P017
+          invert_jumpers_position: true
+          MOSI: P9
+          SCK: P8
+          CS: P7
         where:
           ref: matrix_inner_top
-          shift: [1.55cx+1, -0.5cy-1]
+          shift: [1.55cx+1, -0.5cy-2]
+      via_oled_mosi:
+        what: via
+        where:
+          ref: matrix_inner_top
+          shift: [1.55cx+8, -1.5cy]
+        params.net: P9
+      via_oled_sck:
+        what: via
+        where:
+          ref: matrix_inner_top
+          shift: [1.55cx+9, -1.5cy-1]
+        params.net: P8
+      via_oled_cs:
+        what: via
+        where:
+          ref: matrix_inner_top
+          shift: [1.55cx+10, -1.5cy-2]
+        params.net: P7
+      via_oled_GND:
+        what: via
+        where:
+          ref: matrix_inner_top
+          shift: [1.55cx+1, -1.5cy-4]
+        params.net: GND
       jstph:
         what: jstph
         where:
@@ -257,22 +303,24 @@ pcbs:
             pos: BAT+
             neg: GND
       battery_switch:
-        what: slider
+        what: ceoloide/power_switch_smd_side
         where:
-          ref: matrix_inner_top
-          shift: [0.525cx+5, 0.5cy-2.5]
+            ref: matrix_inner_top
+            shift: [0.525cx+5, 0.5cy-1]
+            rotate: 90
         params:
-          side: B
+          reversible: true
           from: BAT+
           to: RAW
-      reset:
-        what: button
-        params:
-          from: GND
-          to: RST
-        where:
-          ref: matrix_inner_top
-          shift: [1.6cx, 0.3cy]
+      # reset:
+      #   what: ceoloide/reset_switch_tht_top
+      #   params:
+      #     reversible: true
+      #     from: GND
+      #     to: RST
+      #   where:
+      #     ref: matrix_inner_top
+      #     shift: [1.6cx, 0.3cy]
 
 cases:
   top:
