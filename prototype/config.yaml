@@ -10,7 +10,7 @@ units:
   kp: cy+0.1
 
   # min. distance between copper and the edge of the board
-  edge_clearance: 0.6
+  battery_switch_edge_clearance: 0.4
 
   # switch dimensions - source: http://www.kailh.com/en/Products/Ks/CS/321.html
   switch_width: 13.6
@@ -20,22 +20,18 @@ units:
   # mcu (Seeed Studio XIAO nRF52840) dimensions - source: https://www.seeedstudio.com/Seeed-XIAO-BLE-nRF52840-p-5201.html
   mcu_width: 17.5
   mcu_length: 21
-  mcu_width_clerance: 0.5
-  mcu_length_clerance: 1
+  mcu_width_clerance: 1
+  mcu_length_clerance: 3
   mcu_to_key_clearance: 2
 
   # cutout on the pcb to mount the mcu face down
-  mcu_pcb_cutout_width: 12
+  mcu_pcb_cutout_width: 12.9
   mcu_pcb_cutout_length: mcu_length + mcu_length_clerance
-
-  # display (nice!view) dimensions - source: https://nicekeyboards.com/docs/nice-view/
-  display_width: 14
-  display_height: 36
-  display_cutout_clearance: 2
 
   # height/width of the battery switch: source: https://cdn.shopify.com/s/files/1/0618/5674/3655/files/ALPS-SSSS811101.pdf?v=1670451309
   battery_switch_height: 4
   battery_switch_width: 2.9
+  battery_switch_length: 8
 
   # width of the reset switch: https://cdn.shopify.com/s/files/1/0618/5674/3655/files/PANASONIC-EVQPUC02K.pdf?v=1670451309
   reset_switch_width: 3.5
@@ -70,19 +66,19 @@ units:
   index_stagger: 0.25kp
 
   # shift the whole thumb cluster along the x axis
-  thumb_x_shift: 0
+  thumb_x_shift: -7
 
   # shift the whole thumb cluster along the y axis
-  thumb_y_shift: 35
+  thumb_y_shift: 30
 
   # rotate the whole thumb cluster
-  thumb_cluster_rotate: -3
+  thumb_cluster_rotate: -7
 
   # size of the mcu area
   mcu_area_width: 35
 
   # space between the pcb and the wall of the case
-  pcb_to_case_wall_tolerance: 1.5
+  pcb_to_case_wall_tolerance: 0.5
 
   # thickness of the wall
   wall_thickness: 1
@@ -94,46 +90,45 @@ units:
   top_plate_thickness: 1
 
   # space between the bottom and the top plate of the case
-  internal_distance_between_plates: 5
+  internal_distance_between_plates: 1
 
   # distance between the nice view's bottom edge and the GND via
   via_oled_GND_clearance: 3
 
   # battery cutout
-  battery_cutout_width: 27
-  battery_cutout_height: 37
-  battery_switch_wall_cutout_x_shift_matrix_inner_top: 0.5ks+(mcu_area_width/2-display_width/2)/2
-  battery_cutout_x_shift_matrix_inner_bottom: 24
-  battery_cutout_y_shift_matrix_inner_bottom: -12
-  battery_cutout_rotation: -15
+  battery_cutout_width: 32
+  battery_cutout_height: 43
+  battery_cutout_x_shift_matrix_inner_bottom: 26.5
+  battery_cutout_y_shift_matrix_inner_bottom: -9.5
+  battery_cutout_rotation: 0
 
-  # position of the magsaf cutout
-  magsafe_cutout_x_shift_matrix_middle_home: 0
-  magsafe_cutout_y_shift_matrix_middle_home: -8
-
-  # wall cutout
+  # usb-c cutout
   usbc_height: internal_distance_between_plates # use 3.3, once nice nano position on PCB is fixed
-  usbc_width: 14 # change to 9, once nice nano position on PCB is fixed
+  usbc_width: 9 # change to 9, once nice nano position on PCB is fixed
+  usbc_length: 9
+  usbc_jut: 2 # number of milimeters the usbc plag stucks out from the PCB
 
-  # magsafe cutout in the case
-  magsafe_tolerance: 0.5
-  magsafe_radius_inner: 22
-  magsafe_radius_outer: 28
-  magsafe_inner_height: bottom_plate_thickness
-  magsafe_bottom_thickness: 0.2
-
-  # hight of the walls that are used to snap
-  snap_height: 2
-  # how wide the empty space between the two snap walls is
-  snap_slot_width: 0.75
-  # how high the middle wall is
-  inner_snap_wall_width: 0.75
   # added thickness to the bottom to make the case more stable
-  stability_height: 1.5
-  # space between the pcb and the case wall
-  pcb_to_case_wall_tolerance_incl_snap_wall: pcb_to_case_wall_tolerance+snap_slot_width +inner_snap_wall_width
-  # thickness of the wall incl. both snap walls
+  stability_height: 1
+
+  # snap tolerance, extra space between the double wall from the top plate and the single wall of the bottom place, the smaller the tighter the fit of the snap is
+  snap_tolerance: 0.0
+
+  # how wide the empty space between the two snap walls is, this is the slot between the double wall on the bottom case
+  snap_slot_width: 0.8+snap_tolerance/2
+  # how wide the middle wall is, this is the wall of the bottom case, that goes into the snap slof of the top case
+  snap_middle_wall_width: snap_slot_width-snap_tolerance/2
+  # this ts the width of the inner wall of the double wall on the top case
+  inner_snap_wall_width: snap_slot_width
+
+  # height of the walls that are used to snap
+  bottom_snap_wall_height: bottom_plate_thickness + internal_distance_between_plates+ stability_height/2
+  # this is the height oft the inner wall of the double wall on the top case, the inner wall is doesn't go all the way to the bottom, making this higher will make the fit more snug
+  top_inner_snap_wall_height: top_plate_thickness + internal_distance_between_plates + stability_height/2 
+  # thickness of the wall incl. both snap walls, this is the wall on the top part of the case with the outer and the inner wall
   double_wall_width: wall_thickness+snap_slot_width+inner_snap_wall_width
+  # space between the pcb and the case wall
+  pcb_to_case_wall_tolerance_incl_snap_wall: pcb_to_case_wall_tolerance+snap_slot_width+inner_snap_wall_width
 
   # distance for the mirrored case (only relevant for the preview)
   mirror_distance: 2.5ks
@@ -143,27 +138,64 @@ units:
   outer_to_index_x_distance: ks+pinky_spread+ks+index_spread+thumb_x_shift
   outer_to_outer_thumb_x_distance: outer_to_index_x_distance+thumb_x_shift+3ks
   left_to_right_x_distance: outer_to_outer_thumb_x_distance+2ks
+  thumbs_cluster_top_right_corner_y_shift_matrix_inner_bottom: battery_cutout_y_shift_matrix_inner_bottom - battery_cutout_height/2 - 2
 
-  # pcb helpers
+  # pcb & case helpers
+  top_key_center_to_outer_case_wall_distance: 0.5kp+edge_to_key_distance+pcb_to_case_wall_tolerance+double_wall_width # this is the distance of any key of the top row to the edge of the case (y direction), which can be used to place componenets relative to the outer case wall
+
   switch_cutout_width: switch_width+switch_hole_extra_spacing
   switch_cutout_height: switch_height+switch_hole_extra_spacing
 
   mcu_position_x_shift_from_matrx_inner_top: 0.5ks+mcu_to_key_clearance+mcu_width/2 # 0.5ks+mcu_area_width-mcu_length/2
   mcu_position_y_shift_from_matrx_inner_top: 0.5kp+edge_to_key_distance-mcu_length/2 # 0.5kp+edge_to_key_distance-mcu_width/2-5
 
-  mcu_cutout_x: mcu_position_x_shift_from_matrx_inner_top-display_cutout_clearance/2
+  mcu_bottom_cutout_length: mcu_length+pcb_to_case_wall_tolerance+2*mcu_length_clerance # only apply length clearance onece, since the front side (snap wall) should not be cut
+  mcu_bottom_cutout_width: mcu_width+2*mcu_width_clerance
+  mcu_bottom_cutout_y_shift_from_matrx_inner_top: top_key_center_to_outer_case_wall_distance-double_wall_width-mcu_bottom_cutout_length/2 # subtract "mcu_length_clerance/2" to move the cutout away from the snap wall
 
-  battery_switch_shift_x_from_matrix_inner_home: 0.5ks+mcu_area_width-battery_switch_width/2-edge_clearance
-  battery_switch_shift_y_from_matrix_inner_home: -4 # 0.5kp+edge_to_key_distance-battery_switch_height/2
+  usbc_cutout_length: usbc_length+double_wall_width-usbc_jut
+  usbc_cutout_width: usbc_width
+  usbc_cutout_y_shift_from_matrix_inner_top: top_key_center_to_outer_case_wall_distance-usbc_cutout_length/2
 
-  jstph_shift_x_from_matrix_inner_home: 0.5ks+mcu_area_width*2/3
-  jstph_shift_y_from_matrix_inner_home: -3
+  jumper_pads_width: 10
+  jumper_pads_length: mcu_length
+  x_distance_between_mcu_and_jumper_pads: 3
+  jumper_pads_cutout_x_shift_from_matrx_inner_top: mcu_position_x_shift_from_matrx_inner_top+mcu_width/2+jumper_pads_width/2+x_distance_between_mcu_and_jumper_pads
+  jumper_pads_cutout_y_shift_from_matrix_inner_top: top_key_center_to_outer_case_wall_distance-8-jumper_pads_length/2
+
+  battery_switch_shift_x_from_matrix_inner_home: 0.5ks+mcu_area_width-battery_switch_width/2-battery_switch_edge_clearance
+  battery_switch_shift_y_from_matrix_inner_home: 1.25
+
+  battery_switch_wall_cutout_width: battery_switch_length+1
+  battery_switch_wall_cutout_length: battery_switch_width+double_wall_width+battery_switch_edge_clearance+pcb_to_case_wall_tolerance_incl_snap_wall
+  battery_switch_wall_cutout_shift_x_from_matrix_inner_home: battery_switch_shift_x_from_matrix_inner_home+(double_wall_width+battery_switch_edge_clearance)/2
+  battery_switch_wall_cutout_shift_y_from_matrix_inner_home: battery_switch_shift_y_from_matrix_inner_home
+
+  jstph_length: 7
+  xiao_battery_pos_pad_shift_y_from_battery_cutout: 2
+  battery_raw_pads_shift_y_from_battery_cutout: 2
+  xiao_battery_pos_pad_shift_x_from_matrix_inner_bottom: battery_cutout_x_shift_matrix_inner_bottom - battery_cutout_width/2 + battery_cutout_width/2
+  xiao_battery_pos_pad_shift_y_from_matrix_inner_bottom: battery_cutout_y_shift_matrix_inner_bottom+battery_cutout_height/2+xiao_battery_pos_pad_shift_y_from_battery_cutout
+
+  battery_raw_pos_pad_shift_x_from_matrix_inner_bottom: battery_cutout_x_shift_matrix_inner_bottom - battery_cutout_width/2 + battery_cutout_width*2/3
+  battery_raw_pos_pad_shift_y_from_matrix_inner_bottom: battery_cutout_y_shift_matrix_inner_bottom-battery_cutout_height/2-battery_raw_pads_shift_y_from_battery_cutout
+
+  battery_raw_neg_pad_shift_x_from_matrix_inner_bottom: battery_cutout_x_shift_matrix_inner_bottom - battery_cutout_width/2 + battery_cutout_width*1/3
+  battery_raw_neg_pad_shift_y_from_matrix_inner_bottom: battery_cutout_y_shift_matrix_inner_bottom-battery_cutout_height/2-battery_raw_pads_shift_y_from_battery_cutout
+
+  via_battery_raw_neg_shift_x_from_matrix_inner_bottom: battery_cutout_x_shift_matrix_inner_bottom - battery_cutout_width/2 + battery_cutout_width/2
+  via_battery_raw_neg_shift_y_from_matrix_inner_bottom: battery_cutout_y_shift_matrix_inner_bottom-battery_cutout_height/2-battery_raw_pads_shift_y_from_battery_cutout
+
+  battery_cable_cutout_width: 4
+  battery_cable_cutout_length: 10
+  battery_cable_cutout_shift_x_from_matrix_inner_top: xiao_battery_pos_pad_shift_x_from_matrix_inner_bottom
+  battery_cable_cutout_shift_y_from_matrix_inner_top: xiao_battery_pos_pad_shift_y_from_matrix_inner_bottom - battery_cable_cutout_length/2
 
   # offset of the solder pads (moving the solder pads outside of the mcu to be able cutout the PBC of the inner part of the mcu)
-  x_offset_left_pads: 19
-  y_offset_right_pads: 5
-  y_offset_left_pads: 5
-  x_offset_right_pads: 14
+  x_offset_left_pads: 19.4
+  y_offset_right_pads: 1.5
+  y_offset_left_pads: 1.5
+  x_offset_right_pads: 14.4
 
 points:
   key:
@@ -275,7 +307,7 @@ points:
         shift: mirror_distance
       anchor:
         - ref: matrix_inner_bottom
-          shift: [0.5ks+mcu_area_width, -0.5kp-edge_to_key_distance]
+          shift: [0.5ks+mcu_area_width, thumbs_cluster_top_right_corner_y_shift_matrix_inner_bottom]
     matrix_top_right_corner:
       mirror:
         ref: matrix_inner_home
@@ -384,7 +416,7 @@ outlines:
   _case_bottom_snap_inner_outline_left:
     - what: outline
       name: _plate_outline_left
-      expand: pcb_to_case_wall_tolerance_incl_snap_wall-snap_slot_width+0.05
+      expand: pcb_to_case_wall_tolerance_incl_snap_wall-snap_middle_wall_width
       joints: 1
 
   _case_bottom_snap_left:
@@ -421,62 +453,75 @@ outlines:
       size: [switch_cutout_width, switch_cutout_height]
 
   # the socket outline/cutout is copied from https://github.com/ctranstrum/chuck
-  _socket_outline:
-    - what: rectangle
-      adjust.shift: [0, -5.95]
-      size: [4.75, 4.65]
-      bevel: 1
-    - what: rectangle
-      adjust.shift: [-4.85, -3.8]
-      size: [4.85, 4.65]
-      fillet: 1
-    - what: rectangle
-      size: 2.6
-      adjust.shift: [-2.4, -4.8]
-    - what: rectangle
-      adjust.shift: [-1.4, -2.5]
-      size: 2.3
-    - what: circle
-      radius: 2.3
-      adjust.shift: [-0.4, -1.35]
-      operation: subtract
-    - what: rectangle
-      size: 2
-      adjust.shift: [-2.375, -6.125]
-    - what: circle
-      radius: 1
-      adjust.shift: [-3.375, -7.125]
-      operation: subtract
-    - what: rectangle
-      size: [3.6, 1.7]
-      adjust.shift: [2.375, -5.95]
-    - what: rectangle
-      size: [3.6, 1.7]
-      adjust.shift: [-7.325, -3.8]
-    - what: rectangle
-      size: [2, 0.6]
-      adjust.shift: [-6.5, -1.775]
+  # _socket_outline:
+  #   - what: rectangle
+  #     adjust.shift: [0, -5.95]
+  #     size: [4.75, 4.65]
+  #     bevel: 1
+  #   - what: rectangle
+  #     adjust.shift: [-4.85, -3.8]
+  #     size: [4.85, 4.65]
+  #     fillet: 1
+  #   - what: rectangle
+  #     size: 2.6
+  #     adjust.shift: [-2.4, -4.8]
+  #   - what: rectangle
+  #     adjust.shift: [-1.4, -2.5]
+  #     size: 2.3
+  #   - what: circle
+  #     radius: 2.3
+  #     adjust.shift: [-0.4, -1.35]
+  #     operation: subtract
+  #   - what: rectangle
+  #     size: 2
+  #     adjust.shift: [-2.375, -6.125]
+  #   - what: circle
+  #     radius: 1
+  #     adjust.shift: [-3.375, -7.125]
+  #     operation: subtract
+  #   - what: rectangle
+  #     size: [3.6, 1.7]
+  #     adjust.shift: [2.375, -5.95]
+  #   - what: rectangle
+  #     size: [3.6, 1.7]
+  #     adjust.shift: [-7.325, -3.8]
+  #   - what: rectangle
+  #     size: [2, 0.6]
+  #     adjust.shift: [-6.5, -1.775]
+  #   - what: circle
+  #     radius: 1.4
+  #     adjust.shift: [0, 0]
+  #   - what: circle
+  #     radius: 0.6
+  #     adjust.shift: [-5.5, 0]
+  #   - what: circle
+  #     radius: 0.6
+  #     adjust.shift: [5.5, 0]
 
-  _socket_outlines:
-    - what: outline
-      name: _socket_outline
+  # _socket_outlines:
+  #   - what: outline
+  #     name: _socket_outline
+  #     where: key
+  #     adjust:
+  #       rotate: 90
+  #       resist: true
+
+  # _socket_expanded:
+  #   - what: outline
+  #     name: _socket_outline
+  #     expand: 0.6
+
+  # _socket_cutout:
+  #   - what: outline
+  #     name: _socket_expanded
+  #     where: key
+
+  _diode_cutout:
+    - what: rectangle
+      size: [6, 3]
       where: key
       adjust:
-        rotate: 180
-        resist: true
-
-  _socket_expanded:
-    - what: outline
-      name: _socket_outline
-      expand: 0.75
-
-  _socket_cutout:
-    - what: outline
-      name: _socket_expanded
-      where: key
-      adjust:
-        rotate: 180
-        resist: true
+        shift: [0, 4.75]
 
   _mcu_pcb_cutout_left:
     - what: rectangle
@@ -494,40 +539,52 @@ outlines:
       where: matrix_inner_top
       size:
         [
-          mcu_width+2*mcu_width_clerance,
-          mcu_length+pcb_to_case_wall_tolerance+mcu_length_clerance*2,
+          mcu_bottom_cutout_width,
+          mcu_bottom_cutout_length,
         ]
       adjust:
         ref: matrix_inner_top
         shift:
           [
-            mcu_cutout_x,
-            0.5kp+edge_to_key_distance+pcb_to_case_wall_tolerance+double_wall_width/2-mcu_length/2,
+            mcu_position_x_shift_from_matrx_inner_top,
+            mcu_bottom_cutout_y_shift_from_matrx_inner_top,
           ]
 
-  _mcu_wall_cutout_left:
+  _usbc_cutout:
     - what: rectangle
       where: matrix_inner_top
-      size: [usbc_width, double_wall_width]
+      size: [usbc_cutout_width, usbc_cutout_length]
       adjust:
         ref: matrix_inner_top
         shift:
           [
-            mcu_cutout_x,
-            0.5kp+edge_to_key_distance+pcb_to_case_wall_tolerance+double_wall_width/2,
+            mcu_position_x_shift_from_matrx_inner_top,
+            usbc_cutout_y_shift_from_matrix_inner_top,
           ]
 
-  _battery_switch_wall_cutout_left:
+  _jumper_pads_cutout:
     - what: rectangle
       where: matrix_inner_top
-      size: [6, double_wall_width]
+      size: [jumper_pads_width, jumper_pads_length]
       adjust:
         ref: matrix_inner_top
         shift:
           [
-            battery_switch_wall_cutout_x_shift_matrix_inner_top,
-            0.5kp+edge_to_key_distance+pcb_to_case_wall_tolerance+double_wall_width/2,
+            jumper_pads_cutout_x_shift_from_matrx_inner_top,
+            jumper_pads_cutout_y_shift_from_matrix_inner_top,
           ]
+
+  # _battery_switch_wall_cutout_left:
+  #   - what: rectangle
+  #     where: matrix_inner_top
+  #     size: [6, double_wall_width]
+  #     adjust:
+  #       ref: matrix_inner_top
+  #       shift:
+  #         [
+  #           battery_switch_wall_cutout_x_shift_matrix_inner_top,
+  #           0.5kp+edge_to_key_distance+pcb_to_case_wall_tolerance+double_wall_width/2,
+  #         ]
 
   _battery_cutout_left:
     - what: rectangle
@@ -542,28 +599,6 @@ outlines:
           ]
         rotate: battery_cutout_rotation
 
-  _magsafe_cutout_inner_left:
-    - what: circle
-      where: matrix_middle_home
-      radius: magsafe_radius_inner+magsafe_tolerance
-      adjust:
-        shift:
-          [
-            magsafe_cutout_x_shift_matrix_middle_home,
-            magsafe_cutout_y_shift_matrix_middle_home,
-          ]
-
-  _magsafe_cutout_outer_left:
-    - what: circle
-      where: matrix_middle_home
-      radius: magsafe_radius_outer+magsafe_tolerance
-      adjust:
-        shift:
-          [
-            magsafe_cutout_x_shift_matrix_middle_home,
-            magsafe_cutout_y_shift_matrix_middle_home,
-          ]
-
   board_preview_left:
     - name: _board_left
     - operation: subtract
@@ -572,6 +607,8 @@ outlines:
       name: _mcu_pcb_cutout_left
     - operation: subtract
       name: _battery_cutout_left
+    # - operation: subtract
+    #   name: _socket_cutout
 
   _board_right:
     - what: polygon
@@ -628,7 +665,7 @@ outlines:
   _case_bottom_snap_inner_outline_right:
     - what: outline
       name: _plate_outline_right
-      expand: pcb_to_case_wall_tolerance_incl_snap_wall-snap_slot_width
+      expand: pcb_to_case_wall_tolerance_incl_snap_wall-snap_middle_wall_width
       joints: 1
 
   _case_bottom_snap_right:
@@ -681,39 +718,39 @@ outlines:
       where: mirror_matrix_inner_top
       size:
         [
-          mcu_width+2*mcu_width_clerance,
-          mcu_length+pcb_to_case_wall_tolerance+mcu_length_clerance*2,
+          mcu_bottom_cutout_width,
+          mcu_bottom_cutout_length,
         ]
       adjust:
         ref: mirror_matrix_inner_top
         shift:
           [
-            mcu_cutout_x,
-            0.5kp+edge_to_key_distance+pcb_to_case_wall_tolerance+double_wall_width/2-mcu_length/2,
+            mcu_position_x_shift_from_matrx_inner_top,
+            mcu_bottom_cutout_y_shift_from_matrx_inner_top,
           ]
 
   _mcu_wall_cutout_right:
     - what: rectangle
       where: mirror_matrix_inner_top
-      size: [usbc_width, double_wall_width]
+      size: [usbc_cutout_width, usbc_cutout_length]
       adjust:
         ref: mirror_matrix_inner_top
         shift:
           [
-            mcu_cutout_x,
-            0.5kp+edge_to_key_distance+pcb_to_case_wall_tolerance+double_wall_width/2,
+            mcu_position_x_shift_from_matrx_inner_top,
+            usbc_cutout_y_shift_from_matrix_inner_top,
           ]
 
-  _battery_switch_wall_cutout_right:
+  _battery_switch_wall_cutout_left:
     - what: rectangle
-      where: mirror_matrix_inner_top
-      size: [6, double_wall_width]
+      where: mirror_matrix_inner_home
+      size: [battery_switch_wall_cutout_length, battery_switch_wall_cutout_width]
       adjust:
-        ref: mirror_matrix_inner_top
+        ref: mirror_matrix_inner_home
         shift:
           [
-            battery_switch_wall_cutout_x_shift_matrix_inner_top,
-            0.5kp+edge_to_key_distance+pcb_to_case_wall_tolerance+double_wall_width/2,
+            battery_switch_wall_cutout_shift_x_from_matrix_inner_home,
+            battery_switch_wall_cutout_shift_y_from_matrix_inner_home,
           ]
 
   _battery_cutout_right:
@@ -729,26 +766,16 @@ outlines:
           ]
         rotate: battery_cutout_rotation
 
-  _magsafe_cutout_inner_right:
-    - what: circle
-      where: mirror_matrix_middle_home
-      radius: magsafe_radius_inner+magsafe_tolerance
+  _battery_cable_cutout_right:
+    - what: rectangle
+      where: mirror_matrix_inner_top
+      size: [battery_cable_cutout_width, battery_cable_cutout_length]
       adjust:
+        ref: mirror_matrix_inner_top
         shift:
           [
-            magsafe_cutout_x_shift_matrix_middle_home,
-            magsafe_cutout_y_shift_matrix_middle_home,
-          ]
-
-  _magsafe_cutout_outer_right:
-    - what: circle
-      where: mirror_matrix_middle_home
-      radius: magsafe_radius_outer+magsafe_tolerance
-      adjust:
-        shift:
-          [
-            magsafe_cutout_x_shift_matrix_middle_home,
-            magsafe_cutout_y_shift_matrix_middle_home,
+            battery_cable_cutout_shift_x_from_matrix_inner_top,
+            battery_cable_cutout_shift_y_from_matrix_inner_top,
           ]
 
   board_preview_right:
@@ -775,24 +802,24 @@ cases:
       extrude: top_plate_thickness
     - what: outline
       name: _case_walls_right
-      extrude: 2*top_plate_thickness + internal_distance_between_plates
+      extrude: top_plate_thickness + internal_distance_between_plates
     - what: outline
       name: _keys_right
       extrude: top_plate_thickness
       operation: subtract
     - what: outline
       name: _case_top_snap_right
-      extrude: 2*top_plate_thickness+internal_distance_between_plates
+      extrude: top_plate_thickness+internal_distance_between_plates
       operation: add
-    - what: outline
-      name: _battery_switch_wall_cutout_right
-      extrude: top_plate_thickness + internal_distance_between_plates
-      shift: [0, 0, top_plate_thickness]
-      operation: subtract
-    - what: outline
-      name: _battery_switch_wall_cutout_right
-      extrude: top_plate_thickness + internal_distance_between_plates - usbc_height
-      shift: [0, 0, top_plate_thickness]
+    # - what: outline
+    #   name: _battery_switch_wall_cutout_left
+    #   extrude: top_plate_thickness + internal_distance_between_plates
+    #   shift: [0, 0, top_plate_thickness]
+    #   operation: subtract
+    # - what: outline
+    #   name: _battery_switch_wall_cutout_left
+    #   extrude: top_plate_thickness + internal_distance_between_plates - usbc_height
+    #   shift: [0, 0, top_plate_thickness]
     - what: outline
       name: _mcu_wall_cutout_right
       extrude: top_plate_thickness + internal_distance_between_plates
@@ -804,48 +831,35 @@ cases:
       shift: [0, 0, top_plate_thickness]
       operation: add
 
-  left_case_bottom:
-    - what: outline
-      name: _case_outer_outline_left
-      extrude: bottom_plate_thickness
-    - what: outline
-      name: _battery_cutout_left
-      extrude: internal_distance_between_plates-3
-      operation: add
-    - what: outline
-      name: _case_bottom_snap_left
-      extrude: bottom_plate_thickness+snap_height
-      operation: add
-    - what: outline
-      name: _case_bottom_stability_outline_left
-      extrude: bottom_plate_thickness+stability_height
-      operation: add
-    - what: outline
-      name: _magsafe_cutout_outer_left
-      extrude: internal_distance_between_plates
-      shift: [0, 0, bottom_plate_thickness]
-      operation: subtract
-    - what: outline
-      name: _magsafe_cutout_inner_left
-      extrude: bottom_plate_thickness+snap_height
-      operation: add
-    - what: outline
-      name: _battery_switch_wall_cutout_left
-      extrude: bottom_plate_thickness + internal_distance_between_plates
-      shift: [0, 0, magsafe_bottom_thickness]
-      operation: subtract
-    - what: outline
-      name: _mcu_wall_cutout_left
-      extrude: bottom_plate_thickness + internal_distance_between_plates
-      operation: subtract
-    - what: outline
-      name: _mcu_bottom_cutout_left
-      extrude: bottom_plate_thickness+snap_height
-      operation: subtract
-    - what:  outline
-      name: _socket_cutout
-      extrude: bottom_plate_thickness+stability_height
-      operation: subtract
+  # left_case_bottom:
+  #   - what: outline
+  #     name: _case_outer_outline_left
+  #     extrude: bottom_plate_thickness
+  #   - what: outline
+  #     name: _case_bottom_snap_left
+  #     extrude: bottom_snap_wall_height
+  #     operation: add
+  #   - what: outline
+  #     name: _case_bottom_stability_outline_left
+  #     extrude: bottom_plate_thickness+stability_height
+  #     operation: add
+  #   - what: outline
+  #     name: _battery_cutout_left
+  #     extrude: internal_distance_between_plates
+  #     shift: [0, 0, bottom_plate_thickness]
+  #     operation: subtract
+  #   - what: outline
+  #     name: _usbc_cutout
+  #     extrude: bottom_plate_thickness + internal_distance_between_plates
+  #     operation: subtract
+  #   - what: outline
+  #     name: _mcu_bottom_cutout_left
+  #     extrude: bottom_snap_wall_height # has to have bottom_snap_wall_height because it also has to cut out the snap wall
+  #     operation: subtract
+  #   - what:  outline
+  #     name: _socket_cutout
+  #     extrude: bottom_plate_thickness+stability_height
+  #     operation: subtract
 
   # the right top case uses the elements from the left side because negative extrudes are not possible, meaning everything is flipped
   right_case_top:
@@ -854,75 +868,87 @@ cases:
       extrude: top_plate_thickness
     - what: outline
       name: _case_walls_left
-      extrude: 2*top_plate_thickness + internal_distance_between_plates
+      extrude: top_plate_thickness + internal_distance_between_plates + stability_height
     - what: outline
       name: _keys_left
       extrude: top_plate_thickness
       operation: subtract
     - what: outline
       name: _case_top_snap_left
-      extrude: 2*top_plate_thickness+internal_distance_between_plates
+      extrude: top_inner_snap_wall_height
       operation: add
     - what: outline
-      name: _battery_switch_wall_cutout_left
-      extrude: top_plate_thickness + internal_distance_between_plates
-      shift: [0, 0, top_plate_thickness]
+      name: _battery_cutout_left
+      extrude: top_plate_thickness/2
+      shift: [0, 0, top_plate_thickness/2]
       operation: subtract
     - what: outline
       name: _battery_switch_wall_cutout_left
-      extrude: top_plate_thickness + internal_distance_between_plates - usbc_height
-      shift: [0, 0, top_plate_thickness]
-    - what: outline
-      name: _mcu_wall_cutout_left
-      extrude: top_plate_thickness + internal_distance_between_plates
+      extrude: internal_distance_between_plates + stability_height
       shift: [0, 0, top_plate_thickness]
       operation: subtract
     - what: outline
-      name: _mcu_wall_cutout_left
-      extrude: top_plate_thickness + internal_distance_between_plates - usbc_height
-      shift: [0, 0, top_plate_thickness]
+      name: _mcu_bottom_cutout_left
+      extrude: top_plate_thickness/2
+      shift: [0, 0, top_plate_thickness/2]
+      operation: subtract
+    - what: outline
+      name: _usbc_cutout
+      extrude: top_plate_thickness + internal_distance_between_plates + stability_height
+      operation: subtract
+    - what: outline
+      name: _jumper_pads_cutout
+      extrude: top_plate_thickness/2
+      shift: [0, 0, top_plate_thickness/2]
+      operation: subtract
+    # - what: outline
+    #   name: _usbc_cutout
+    #   extrude: top_plate_thickness + internal_distance_between_plates - usbc_height
+    #   shift: [0, 0, top_plate_thickness]
 
   right_case_bottom:
     - what: outline
       name: _case_outer_outline_right
       extrude: bottom_plate_thickness
     - what: outline
-      name: _battery_cutout_right
-      extrude: internal_distance_between_plates-3
-      operation: add
-    - what: outline
       name: _case_bottom_snap_right
-      extrude: bottom_plate_thickness+snap_height
+      extrude: bottom_snap_wall_height
       operation: add
     - what: outline
       name: _case_bottom_stability_outline_right
       extrude: bottom_plate_thickness+stability_height
       operation: add
     - what: outline
-      name: _magsafe_cutout_outer_right
-      extrude: internal_distance_between_plates
-      shift: [0, 0, magsafe_bottom_thickness]
+      name: _battery_cutout_right
+      extrude: internal_distance_between_plates+stability_height+bottom_plate_thickness/2
+      shift: [0, 0, bottom_plate_thickness/2]
+      operation: subtract
+    - what:  outline
+      name: _battery_cable_cutout_right
+      extrude: internal_distance_between_plates+stability_height+bottom_plate_thickness/2
+      shift: [0, 0, bottom_plate_thickness/2]
       operation: subtract
     - what: outline
-      name: _magsafe_cutout_inner_right
-      extrude: bottom_plate_thickness+snap_height
-      operation: add
-    - what: outline
-      name: _battery_switch_wall_cutout_right
-      extrude: bottom_plate_thickness + internal_distance_between_plates
-      shift: [0, 0, bottom_plate_thickness]
+      name: _battery_switch_wall_cutout_left
+      extrude: internal_distance_between_plates+stability_height+bottom_plate_thickness
       operation: subtract
     - what: outline
       name: _mcu_wall_cutout_right
-      extrude: bottom_plate_thickness + internal_distance_between_plates
+      extrude: internal_distance_between_plates+stability_height
+      shift: [0, 0, bottom_plate_thickness]
       operation: subtract
     - what: outline
       name: _mcu_bottom_cutout_right
-      extrude: bottom_plate_thickness+snap_height
+      extrude: bottom_snap_wall_height # has to have bottom_snap_wall_height because it also has to cut out the snap wall
       operation: subtract
+    # - what:  outline
+    #   name: _socket_cutout
+    #   extrude: bottom_plate_thickness+stability_height
+    #   operation: subtract
     - what:  outline
-      name: _socket_cutout
-      extrude: bottom_plate_thickness+stability_height
+      name: _diode_cutout
+      extrude: internal_distance_between_plates+stability_height+bottom_plate_thickness/2
+      shift: [0, 0, bottom_plate_thickness/2]
       operation: subtract
 
 pcbs:
@@ -967,36 +993,61 @@ pcbs:
         params:
           reversable: true
           reversable_pins: 7
-          face_down: true
+          face_down: false
           x_offset_left_pads: x_offset_left_pads
           x_offset_right_pads: x_offset_right_pads
           y_offset_left_pads: y_offset_left_pads
           y_offset_right_pads: y_offset_right_pads
           reverse_solder_pads: true
-      jstph:
-        what: jstph
+
+      xiao_battery_pos_pad:
+        what: ceoloide/backlog/mrzealot/pad
         where:
-          ref: matrix_inner_home
-          shift:
-            [
-              jstph_shift_x_from_matrix_inner_home,
-              jstph_shift_y_from_matrix_inner_home,
-            ]
+          ref: matrix_inner_bottom
+          shift: [
+                xiao_battery_pos_pad_shift_x_from_matrix_inner_bottom,
+                xiao_battery_pos_pad_shift_y_from_matrix_inner_bottom,
+              ]
         params:
-          side: B
-          pos: BAT+
-          neg: GND
-      via_jstph:
+          net: BAT+
+          text: BAT+
+
+      battery_raw_pos_pad:
+        what: ceoloide/backlog/mrzealot/pad
+        where:
+          ref: matrix_inner_bottom
+          shift: [
+                battery_raw_pos_pad_shift_x_from_matrix_inner_bottom,
+                battery_raw_pos_pad_shift_y_from_matrix_inner_bottom,
+              ]
+        params:
+          net: RAW
+          text: BAT+
+
+      battery_raw_neg_pad:
+        what: ceoloide/backlog/mrzealot/pad
+        where:
+          ref: matrix_inner_bottom
+          shift: [
+                battery_raw_neg_pad_shift_x_from_matrix_inner_bottom,
+                battery_raw_neg_pad_shift_y_from_matrix_inner_bottom,
+              ]
+        params:
+          net: GND
+          text: BAT-
+
+      via_battery_raw_neg:
         what: via
         where:
-          ref: matrix_inner_home
+          ref: matrix_inner_bottom
           shift:
             [
-              jstph_shift_x_from_matrix_inner_home,
-              jstph_shift_y_from_matrix_inner_home+2,
+              via_battery_raw_neg_shift_x_from_matrix_inner_bottom,
+              via_battery_raw_neg_shift_y_from_matrix_inner_bottom,
             ]
         params:
           net: GND
+
       battery_switch:
         what: ceoloide/power_switch_smd_side
         where:
@@ -1009,15 +1060,14 @@ pcbs:
         params:
           reversible: true
           from: BAT+
-          to: V3
-      via_battery_switch:
-        what: via
-        where:
-          ref: matrix_inner_home
-          shift:
-            [
-              battery_switch_shift_x_from_matrix_inner_home,
-              battery_switch_shift_y_from_matrix_inner_home,
-            ]
-        params:
-          net: V3
+          to: RAW
+
+      # reset_switch:
+      #   what: ceoloide/reset_switch_smd_side
+      #   where:
+      #     ref: matrix_inner_home
+      #     shift:
+      #       [
+      #         battery_switch_shift_x_from_matrix_inner_home,
+      #         battery_switch_shift_y_from_matrix_inner_home-10,
+      #       ]
