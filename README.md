@@ -45,5 +45,33 @@ But what now? I already spent hours and hours to find my perfect keyboard, does 
 
 ### Bulding my own keyboard
 
-I'm not going to describe how one builds a keyboard from scratch, other people already did this very well. The most helpful resource on this was [FlatFootFox's Let's Design A Keyboard With Ergogen v4](https://flatfootfox.com/ergogen-introduction/). It's a step by step guide that explains how to design a PCB from scratch in ergogen, design the case and route everything in KiCAD. It doesn't cover reversible PCBs and some other details that I needed, but was a increadibly helpful starting point. If I'm going to describle the process of building my own keyboard, it will be part if this text, since this text mainly describes my experience and thought process of how I got were I currently am.
+I'm not going to describe how one builds a keyboard from scratch, other people already did this very well. The most helpful resource on this was [FlatFootFox's Let's Design A Keyboard With Ergogen v4](https://flatfootfox.com/ergogen-introduction/). It's a step by step guide that explains how to design a PCB from scratch in ergogen, design the case and route everything in KiCAD. It doesn't cover reversible PCBs and some other details that I needed, but was a increadibly helpful starting point. If I'm going to describle the process of building my own keyboard, it will not be part if this text, since this text mainly describes my experience and thought process of how I got were I currently am.
 
+#### The design phase
+
+There are a couple of things that I learned from the previous keyboards that I owned:
+
+- 40-42 keys is what works best for me
+- Low profile because I haven't yet found a good tenting solution and/or the right tenting angle and the flatter the keyboard is the more comfortable it is to type on when it's not tented
+- Wireless, but with a decent battery life
+- Run ZMK, since HRM worked best with the options that ZMK supported (although QMK is catching up)
+- Displays will be helpful, especially for debuggig when it comes to connectivity
+
+With that in mind I started to design my own keyboard in ergogen folloing FlatFootFox's tutorial. Using the online version is very handy, since one can see in real time how the result looks. https://ergogen.xyz/ is the official web based one, but there is also https://ergogen.ceoloide.com/ and https://ergogen.cache.works/ (probably more, but those are the ones I used).
+
+Since I knew nothing about building custom keyboards, I stared simple, just designing one half (the keyboard in the tutorial is not split). I first read all the steps and then started agin, this time following along by applying the described steps to my own keyboard. This took qutie a bit of time, especially the routing part was hard for me to grasp at first, but after a couple of tries I had a fully routed PCB. It was only the left half, it was not reversible and it wasn't yet in the exact way I wanted it to be, but it it should be functionial if I didn't scew-up. I order the PCP via https://www.pcbway.com/. This way I could use it to test my design, learn to solder and make sure I have everything covered.
+
+Now that I had the PCB, I wanted to make sure the design fits my hand (that's one of the main reasons why I considered building a keyboard from scratch). Because I knew that I'll have to iterate on the design and that I wanted to print the case myself, I ordered a 3D printer, the Bambu Lab A1 mini. I could have used a service to print the case, but being able to print the case, put some switches in it and test that way was super helpful. But before I started 3D printing, I printed the outlines on paper. This is much faster to get to roughly the correct shape and distribution of the keys. For me especially the tumb positon was tricky. After having an approximation of what I wanted in 2D, I 3D printed the case. I printed *lots* of prototypes until I was satisfied with the result.
+
+#### Building half of it
+In the meantime, the PCB of my left half arrived (actually 5 PCBs since that's the minimal amount you can order). I used a combination of parts that I salvaged from pre-built boards that I had (e.g. Nice!Nano controllers) and parts that I ordered (hot-swap sockets, diodes, etc.). This way I could also learn desoldering components.
+Besides the parts for the keyboard, I also needed all the tooling to solder, like the soldering iron, multi-meter (absolutely essential), etc. I started soldering on the balkony since I didn't have a soldering smoke absorber/filter. After the first evening doing so, I ordered a soldering smoke absorber. This was an December and it was roughly 0 degrees celcius (which is 32 Fahreinheit those weird people who use the imperial unit system - no offense).
+After many issues (and even more swear words), I had a working left half of my keyboard. Here's what I learned:
+
+- just try, don't be afraid of breaking things (and make sure you can affort to break things because you'll very likely going to break things)
+- make sure you solder components with right orientation (especially diods, but also the controller ;-))
+- have a multimeter to check your soldering (really, without it, it's almost impossilbe to find issues)
+- make sure you have enough time and be patient and keep trying (I made lots of mistakes, but I'm also very stubborn and just kept trying, understanding where the problem could be, narrowing it down, finding it, fixing it)
+
+#### Setting up ZMK (for half a keyboard)
+When I wrote that I now had a working version, then that's only half the truth. I had half a keyboard that made my multimeter beep when I pressed a key and I've tested each key, but it didn't yet work with a computer.
