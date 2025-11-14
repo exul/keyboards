@@ -1,13 +1,13 @@
 units:
   # choc v1 switches
-  $default_width: cx
-  $default_height: cy
+  $default_width: U
+  $default_height: U
 
   # space between columns (spread)
-  ks: cx+0.1
+  ks: U+0.1
 
   # space between rows (padding)
-  kp: cy+0.1
+  kp: U+0.1
 
   # min. distance between copper and the edge of the board
   battery_switch_edge_clearance: 0.4
@@ -66,13 +66,13 @@ units:
   index_stagger: 0.25kp
 
   # shift the whole thumb cluster along the x axis
-  thumb_x_shift: -7
+  thumb_x_shift: -4
 
   # shift the whole thumb cluster along the y axis
-  thumb_y_shift: 30
+  thumb_y_shift: 35
 
   # rotate the whole thumb cluster
-  thumb_cluster_rotate: -7
+  thumb_cluster_rotate: -10
 
   # size of the mcu area
   mcu_area_width: 35
@@ -87,7 +87,7 @@ units:
   bottom_plate_thickness: 1
 
   # thickness of the top plate
-  top_plate_thickness: 1
+  top_plate_thickness: 2
 
   # space between the bottom and the top plate of the case
   internal_distance_between_plates: 1
@@ -193,7 +193,7 @@ units:
   via_battery_raw_neg_shift_y_from_matrix_inner_bottom: battery_cutout_y_shift_matrix_inner_bottom-battery_cutout_height/2-battery_raw_pads_shift_y_from_battery_cutout
 
   battery_cable_cutout_top_width: 4
-  battery_cable_cutout_top_length: 10
+  battery_cable_cutout_top_length: 12
   battery_cable_cutout_top_shift_x_from_matrix_inner_top: xiao_battery_pos_pad_shift_x_from_matrix_inner_bottom
   battery_cable_cutout_top_shift_y_from_matrix_inner_top: battery_cutout_y_shift_matrix_inner_bottom + battery_cutout_height/2 + battery_cable_cutout_top_length/2
 
