@@ -12,9 +12,9 @@ units:
   # min. distance between copper and the edge of the board
   battery_switch_edge_clearance: 0.4
 
-  # switch dimensions - source: http://www.kailh.com/en/Products/Ks/CS/321.html
-  switch_width: 13.6
-  switch_height: 13.8
+  # switch dimensions - source: http://www.kailh.com/en/Products/Ks/CS/755.html
+  switch_width: 15
+  switch_height: 15
   switch_hole_extra_spacing: 0.8
 
   # mcu (Seeed Studio XIAO nRF52840) dimensions - source: https://www.seeedstudio.com/Seeed-XIAO-BLE-nRF52840-p-5201.html
@@ -48,7 +48,7 @@ units:
   index_spread: ks+1.5
 
   # move ring column up by this number to have a stagger for the pinky and outer column
-  pinky_stagger: 0.6kp
+  pinky_stagger: 0.4 kp
 
   # extra space between pinky and index finger
   pinky_spread: ks+0.5
@@ -66,13 +66,13 @@ units:
   index_stagger: 0.25kp
 
   # shift the whole thumb cluster along the x axis
-  thumb_x_shift: -4
+  thumb_x_shift: 3
 
   # shift the whole thumb cluster along the y axis
   thumb_y_shift: 35
 
   # rotate the whole thumb cluster
-  thumb_cluster_rotate: -10
+  thumb_cluster_rotate: -13
 
   # size of the mcu area
   mcu_area_width: 35
@@ -84,10 +84,10 @@ units:
   wall_thickness: 1
 
   # thickness of the bottom case
-  bottom_plate_thickness: 1
+  bottom_plate_thickness: 1.5
 
   # thickness of the top plate
-  top_plate_thickness: 2
+  top_plate_thickness: 1.5
 
   # space between the bottom and the top plate of the case
   internal_distance_between_plates: 1
@@ -198,9 +198,9 @@ units:
   battery_cable_cutout_top_shift_y_from_matrix_inner_top: battery_cutout_y_shift_matrix_inner_bottom + battery_cutout_height/2 + battery_cable_cutout_top_length/2
 
   battery_cable_cutout_bottom_overlap_with_battery_cutout: 2
-  battery_cable_cutout_bottom_width: battery_cutout_width*2/3
+  battery_cable_cutout_bottom_width: battery_cutout_width*4/5
   battery_cable_cutout_bottom_length: 10
-  battery_cable_cutout_bottom_shift_x_from_matrix_inner_top: xiao_battery_pos_pad_shift_x_from_matrix_inner_bottom-battery_cable_cutout_bottom_width*1/3
+  battery_cable_cutout_bottom_shift_x_from_matrix_inner_top: xiao_battery_pos_pad_shift_x_from_matrix_inner_bottom-battery_cable_cutout_bottom_width*1/5
   battery_cable_cutout_bottom_shift_y_from_matrix_inner_top: battery_cutout_y_shift_matrix_inner_bottom - battery_cutout_height/2 - battery_cable_cutout_bottom_length/2+battery_cable_cutout_bottom_overlap_with_battery_cutout
 
 points:
@@ -368,68 +368,68 @@ points:
 
 outlines:
   # the socket outline/cutout is copied from https://github.com/ctranstrum/chuck
-  # _socket_outline:
-  #   - what: rectangle
-  #     adjust.shift: [0, -5.95]
-  #     size: [4.75, 4.65]
-  #     bevel: 1
-  #   - what: rectangle
-  #     adjust.shift: [-4.85, -3.8]
-  #     size: [4.85, 4.65]
-  #     fillet: 1
-  #   - what: rectangle
-  #     size: 2.6
-  #     adjust.shift: [-2.4, -4.8]
-  #   - what: rectangle
-  #     adjust.shift: [-1.4, -2.5]
-  #     size: 2.3
-  #   - what: circle
-  #     radius: 2.3
-  #     adjust.shift: [-0.4, -1.35]
-  #     operation: subtract
-  #   - what: rectangle
-  #     size: 2
-  #     adjust.shift: [-2.375, -6.125]
-  #   - what: circle
-  #     radius: 1
-  #     adjust.shift: [-3.375, -7.125]
-  #     operation: subtract
-  #   - what: rectangle
-  #     size: [3.6, 1.7]
-  #     adjust.shift: [2.375, -5.95]
-  #   - what: rectangle
-  #     size: [3.6, 1.7]
-  #     adjust.shift: [-7.325, -3.8]
-  #   - what: rectangle
-  #     size: [2, 0.6]
-  #     adjust.shift: [-6.5, -1.775]
-  #   - what: circle
-  #     radius: 1.4
-  #     adjust.shift: [0, 0]
-  #   - what: circle
-  #     radius: 0.6
-  #     adjust.shift: [-5.5, 0]
-  #   - what: circle
-  #     radius: 0.6
-  #     adjust.shift: [5.5, 0]
+  _socket_outline:
+    - what: rectangle
+      adjust.shift: [0, -5.95]
+      size: [4.75, 4.65]
+      bevel: 1
+    - what: rectangle
+      adjust.shift: [-4.85, -3.8]
+      size: [4.85, 4.65]
+      fillet: 1
+    - what: rectangle
+      size: 2.6
+      adjust.shift: [-2.4, -4.8]
+    - what: rectangle
+      adjust.shift: [-1.4, -2.5]
+      size: 2.3
+    - what: circle
+      radius: 2.3
+      adjust.shift: [-0.4, -1.35]
+      operation: subtract
+    - what: rectangle
+      size: 2
+      adjust.shift: [-2.375, -6.125]
+    - what: circle
+      radius: 1
+      adjust.shift: [-3.375, -7.125]
+      operation: subtract
+    - what: rectangle
+      size: [3.6, 1.7]
+      adjust.shift: [2.375, -5.95]
+    - what: rectangle
+      size: [3.6, 1.7]
+      adjust.shift: [-7.325, -3.8]
+    - what: rectangle
+      size: [2, 0.6]
+      adjust.shift: [-6.5, -1.775]
+    - what: circle
+      radius: 1.4
+      adjust.shift: [0, 0]
+    - what: circle
+      radius: 0.6
+      adjust.shift: [-5.5, 0]
+    - what: circle
+      radius: 0.6
+      adjust.shift: [5.5, 0]
 
-  # _socket_outlines:
-  #   - what: outline
-  #     name: _socket_outline
-  #     where: key
-  #     adjust:
-  #       rotate: 90
-  #       resist: true
+  _socket_outlines:
+    - what: outline
+      name: _socket_outline
+      where: key
+      adjust:
+        rotate: 90
+        resist: true
 
-  # _socket_expanded:
-  #   - what: outline
-  #     name: _socket_outline
-  #     expand: 0.6
+  _socket_expanded:
+    - what: outline
+      name: _socket_outline
+      expand: 0.6
 
-  # _socket_cutout:
-  #   - what: outline
-  #     name: _socket_expanded
-  #     where: key
+  _socket_cutout:
+    - what: outline
+      name: _socket_expanded
+      where: key
 
   _diode_cutout:
     - what: rectangle
@@ -449,6 +449,13 @@ outlines:
             jumper_pads_cutout_x_shift_from_matrx_inner_top,
             jumper_pads_cutout_y_shift_from_matrix_inner_top,
           ]
+
+  _keys:
+    - what: rectangle
+      fillet: 2
+      where: key
+      bound: false
+      size: [switch_cutout_width, switch_cutout_height]
 
   _board_left:
     - what: polygon
@@ -533,13 +540,6 @@ outlines:
     - what: outline
       name: _case_top_snap_inner_outline_left
       operation: subtract
-
-  _keys_left:
-    - what: rectangle
-      fillet: 2
-      where: [[/key/, /mirror/]]
-      bound: false
-      size: [switch_cutout_width, switch_cutout_height]
 
   _mcu_pcb_cutout_left:
     - what: rectangle
@@ -645,7 +645,7 @@ outlines:
   board_preview_left:
     - name: _board_left
     - operation: subtract
-      name: _keys_left
+      name: _keys
     - operation: subtract
       name: _mcu_pcb_cutout_left
     - operation: subtract
@@ -734,13 +734,6 @@ outlines:
     - what: outline
       name: _case_top_snap_inner_outline_right
       operation: subtract
-
-  _keys_right:
-    - what: rectangle
-      fillet: 2
-      where: [[/key/, /mirror/]]
-      bound: false
-      size: [switch_cutout_width, switch_cutout_height]
 
   _mcu_pcb_cutout_right:
     - what: rectangle
@@ -846,7 +839,7 @@ outlines:
   board_preview_right:
     - name: _board_right
     - operation: subtract
-      name: _keys_right
+      name: _keys
     - operation: subtract
       name: _mcu_pcb_cutout_right
     - operation: subtract
@@ -869,7 +862,7 @@ cases:
       name: _case_walls_right
       extrude: top_plate_thickness + internal_distance_between_plates + stability_height
     - what: outline
-      name: _keys_right
+      name: _keys
       extrude: top_plate_thickness
       operation: subtract
     - what: outline
@@ -951,10 +944,10 @@ cases:
       extrude: internal_distance_between_plates+stability_height+bottom_plate_thickness/2
       shift: [0, 0, bottom_plate_thickness/2]
       operation: subtract
-    # - what:  outline
-    #   name: _socket_cutout
-    #   extrude: bottom_plate_thickness+stability_height
-    #   operation: subtract
+    - what:  outline
+      name: _socket_cutout
+      extrude: bottom_plate_thickness+stability_height
+      operation: subtract
 
   # the right top case uses the elements from the left side because negative extrudes are not possible, meaning everything is flipped
   right_case_top:
@@ -965,7 +958,7 @@ cases:
       name: _case_walls_left
       extrude: top_plate_thickness + internal_distance_between_plates + stability_height
     - what: outline
-      name: _keys_left
+      name: _keys
       extrude: top_plate_thickness
       operation: subtract
     - what: outline
@@ -1042,128 +1035,118 @@ cases:
       extrude: internal_distance_between_plates+stability_height+bottom_plate_thickness/2
       shift: [0, 0, bottom_plate_thickness/2]
       operation: subtract
-    # - what:  outline
-    #   name: _socket_cutout
-    #   extrude: bottom_plate_thickness+stability_height
-    #   operation: subtract
+    - what:  outline
+      name: _socket_cutout
+      extrude: bottom_plate_thickness+stability_height
+      operation: subtract
 
-# pcbs:lvl
-#   board:
-#     template: kicad8
-#     outlines:
-#       main:
-#         outline: pcb_board
-#     footprints:
-#       choc_hotswap:
-#         what: ceoloide/switch_choc_v1_v2
-#         where: [[/^key/, /^matrix|^thumb/]]
-#         adjust:
-#           rotate: 180 # in case north facing LEDs are added
-#         params:
-#           reversible: true
-#           hotswap: true
-#           include_stabilizer_pad: false
-#           include_keycap: false
-#           keycap_height: cy
-#           keycap_width: cx
-#           from: "{{column_net}}"
-#           to: "{{colrow}}"
-#       diode:
-#         what: diode
-#         where: [[/^key/, /^matrix|^thumb/]]
-#         params:
-#           from: "{{colrow}}"
-#           to: "{{row_net}}"
-#         adjust:
-#           shift: [0, 5]
-#       mcu_seeed_xiao:
-#         what: ceoloide/backlog/virginia2244/seeed_xiao
-#         where:
-#           ref: matrix_inner_top
-#           shift:
-#             [
-#               mcu_position_x_shift_from_matrx_inner_top,
-#               mcu_position_y_shift_from_matrx_inner_top,
-#             ]
-#           rotate: 0
-#         params:
-#           reversable: true
-#           reversable_pins: 7
-#           face_down: false
-#           x_offset_left_pads: x_offset_left_pads
-#           x_offset_right_pads: x_offset_right_pads
-#           y_offset_left_pads: y_offset_left_pads
-#           y_offset_right_pads: y_offset_right_pads
-#           reverse_solder_pads: true
+pcbs:
+  board:
+    template: kicad8
+    outlines:
+      main:
+        outline: pcb_board
+    footprints:
+      choc_hotswap:
+        what: ceoloide/switch_choc_v1_v2
+        where: [[/^key/, /^matrix|^thumb/]]
+        adjust:
+          rotate: 180 # in case north facing LEDs are added
+        params:
+          reversible: true
+          hotswap: true
+          include_stabilizer_pad: false
+          include_keycap: false
+          keycap_height: cy
+          keycap_width: cx
+          from: "{{column_net}}"
+          to: "{{colrow}}"
+      diode:
+        what: diode
+        where: [[/^key/, /^matrix|^thumb/]]
+        params:
+          from: "{{colrow}}"
+          to: "{{row_net}}"
+        adjust:
+          shift: [0, 5]
+      mcu_seeed_xiao:
+        what: ceoloide/backlog/virginia2244/seeed_xiao
+        where:
+          ref: matrix_inner_top
+          shift:
+            [
+              mcu_position_x_shift_from_matrx_inner_top,
+              mcu_position_y_shift_from_matrx_inner_top,
+            ]
+          rotate: 0
+        params:
+          reversable: true
+          reversable_pins: 7
+          face_down: false
+          x_offset_left_pads: x_offset_left_pads
+          x_offset_right_pads: x_offset_right_pads
+          y_offset_left_pads: y_offset_left_pads
+          y_offset_right_pads: y_offset_right_pads
+          reverse_solder_pads: true
 
-#       xiao_battery_pos_pad:
-#         what: ceoloide/backlog/mrzealot/pad
-#         where:
-#           ref: matrix_inner_bottom
-#           shift: [
-#                 xiao_battery_pos_pad_shift_x_from_matrix_inner_bottom,
-#                 xiao_battery_pos_pad_shift_y_from_matrix_inner_bottom,
-#               ]
-#         params:
-#           net: BAT+
-#           text: BAT+
+      xiao_battery_pos_pad:
+        what: ceoloide/backlog/mrzealot/pad
+        where:
+          ref: matrix_inner_bottom
+          shift: [
+                xiao_battery_pos_pad_shift_x_from_matrix_inner_bottom,
+                xiao_battery_pos_pad_shift_y_from_matrix_inner_bottom,
+              ]
+        params:
+          net: BAT+
+          text: BAT+
 
-#       battery_raw_pos_pad:
-#         what: ceoloide/backlog/mrzealot/pad
-#         where:
-#           ref: matrix_inner_bottom
-#           shift: [
-#                 battery_raw_pos_pad_shift_x_from_matrix_inner_bottom,
-#                 battery_raw_pos_pad_shift_y_from_matrix_inner_bottom,
-#               ]
-#         params:
-#           net: RAW
-#           text: BAT+
+      battery_raw_pos_pad:
+        what: ceoloide/backlog/mrzealot/pad
+        where:
+          ref: matrix_inner_bottom
+          shift: [
+                battery_raw_pos_pad_shift_x_from_matrix_inner_bottom,
+                battery_raw_pos_pad_shift_y_from_matrix_inner_bottom,
+              ]
+        params:
+          net: RAW
+          text: BAT+
 
-#       battery_raw_neg_pad:
-#         what: ceoloide/backlog/mrzealot/pad
-#         where:
-#           ref: matrix_inner_bottom
-#           shift: [
-#                 battery_raw_neg_pad_shift_x_from_matrix_inner_bottom,
-#                 battery_raw_neg_pad_shift_y_from_matrix_inner_bottom,
-#               ]
-#         params:
-#           net: GND
-#           text: BAT-
+      battery_raw_neg_pad:
+        what: ceoloide/backlog/mrzealot/pad
+        where:
+          ref: matrix_inner_bottom
+          shift: [
+                battery_raw_neg_pad_shift_x_from_matrix_inner_bottom,
+                battery_raw_neg_pad_shift_y_from_matrix_inner_bottom,
+              ]
+        params:
+          net: GND
+          text: BAT-
 
-#       via_battery_raw_neg:
-#         what: via
-#         where:
-#           ref: matrix_inner_bottom
-#           shift:
-#             [
-#               via_battery_raw_neg_shift_x_from_matrix_inner_bottom,
-#               via_battery_raw_neg_shift_y_from_matrix_inner_bottom,
-#             ]
-#         params:
-#           net: GND
+      via_battery_raw_neg:
+        what: via
+        where:
+          ref: matrix_inner_bottom
+          shift:
+            [
+              via_battery_raw_neg_shift_x_from_matrix_inner_bottom,
+              via_battery_raw_neg_shift_y_from_matrix_inner_bottom,
+            ]
+        params:
+          net: GND
 
-#       battery_switch:
-#         what: ceoloide/power_switch_smd_side
-#         where:
-#           ref: matrix_inner_home
-#           shift:
-#             [
-#               battery_switch_shift_x_from_matrix_inner_home,
-#               battery_switch_shift_y_from_matrix_inner_home,
-#             ]
-#         params:
-#           reversible: true
-#           from: BAT+
-#           to: RAW
-
-#       # reset_switch:
-#       #   what: ceoloide/reset_switch_smd_side
-#       #   where:
-#       #     ref: matrix_inner_home
-#       #     shift:
-#       #       [
-#       #         battery_switch_shift_x_from_matrix_inner_home,
-#       #         battery_switch_shift_y_from_matrix_inner_home-10,
-#       #       ]
+      battery_switch:
+        what: ceoloide/power_switch_smd_side
+        where:
+          ref: matrix_inner_home
+          shift:
+            [
+              battery_switch_shift_x_from_matrix_inner_home,
+              battery_switch_shift_y_from_matrix_inner_home,
+            ]
+        params:
+          reversible: true
+          from: BAT+
+          to: RAW
