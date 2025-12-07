@@ -13,9 +13,9 @@ units:
   battery_switch_edge_clearance: 0.4
 
   # switch dimensions - source: http://www.kailh.com/en/Products/Ks/CS/755.html
-  switch_width: 15
-  switch_height: 15
-  switch_hole_extra_spacing: 0.8
+  switch_width: 14
+  switch_height: 14
+  switch_hole_extra_spacing: 0.75
 
   # mcu (Seeed Studio XIAO nRF52840) dimensions - source: https://www.seeedstudio.com/Seeed-XIAO-BLE-nRF52840-p-5201.html
   mcu_width: 17.5
@@ -84,13 +84,13 @@ units:
   wall_thickness: 1
 
   # thickness of the bottom case
-  bottom_plate_thickness: 1.5
+  bottom_plate_thickness: 1
 
   # thickness of the top plate
-  top_plate_thickness: 1.5
+  top_plate_thickness: 2
 
   # space between the bottom and the top plate of the case
-  internal_distance_between_plates: 1
+  internal_distance_between_plates: 1.5
 
   # distance between the nice view's bottom edge and the GND via
   via_oled_GND_clearance: 3
@@ -404,7 +404,7 @@ outlines:
       size: [2, 0.6]
       adjust.shift: [-6.5, -1.775]
     - what: circle
-      radius: 1.4
+      radius: 2
       adjust.shift: [0, 0]
     - what: circle
       radius: 0.6
