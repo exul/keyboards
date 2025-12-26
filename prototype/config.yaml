@@ -1048,7 +1048,7 @@ pcbs:
         outline: pcb_board
     footprints:
       choc_hotswap:
-        what: ceoloide/switch_choc_v1_v2
+        what: ergogen-footprints/switch_choc_v1_v2
         where: [[/^key/, /^matrix|^thumb/]]
         adjust:
           rotate: 180 # in case north facing LEDs are added
@@ -1070,7 +1070,7 @@ pcbs:
         adjust:
           shift: [0, 5]
       mcu_seeed_xiao:
-        what: ceoloide/backlog/virginia2244/seeed_xiao
+        what: ergogen-footprints/mcu_seeed_xiao
         where:
           ref: matrix_inner_top
           shift:
@@ -1090,7 +1090,7 @@ pcbs:
           reverse_solder_pads: true
 
       xiao_battery_pos_pad:
-        what: ceoloide/backlog/mrzealot/pad
+        what: ergogen-footprints/pad
         where:
           ref: matrix_inner_bottom
           shift: [
@@ -1102,7 +1102,7 @@ pcbs:
           text: BAT+
 
       battery_raw_pos_pad:
-        what: ceoloide/backlog/mrzealot/pad
+        what: ergogen-footprints/pad
         where:
           ref: matrix_inner_bottom
           shift: [
@@ -1114,7 +1114,7 @@ pcbs:
           text: BAT+
 
       battery_raw_neg_pad:
-        what: ceoloide/backlog/mrzealot/pad
+        what: ergogen-footprints/pad
         where:
           ref: matrix_inner_bottom
           shift: [
@@ -1138,7 +1138,7 @@ pcbs:
           net: GND
 
       battery_switch:
-        what: ceoloide/power_switch_smd_side
+        what: ergogen-footprints/power_switch_smd_side
         where:
           ref: matrix_inner_home
           shift:
@@ -1148,5 +1148,6 @@ pcbs:
             ]
         params:
           reversible: true
+          invert_behavior: true
           from: BAT+
           to: RAW
