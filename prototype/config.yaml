@@ -37,12 +37,12 @@ units:
   reset_switch_width: 3.5
 
   # thumb key positons and rotation settings - source: https://github.com/nmunnich/ripple-thumb-keycaps?tab=readme-ov-file#design-guidelines
-  thumb_middle_x_offset: 19
-  thumb_middle_y_offset: 4
-  thumb_middle_rotation: -10
-  thumb_outer_x_offset: 37.5
-  thumb_outer_y_offset: 8
-  thumb_outer_rotation: -16
+  thumb_middle_x_offset: 17
+  thumb_middle_y_offset: 1
+  thumb_middle_rotation: -8
+  thumb_outer_x_offset: 36
+  thumb_outer_y_offset: 5
+  thumb_outer_rotation: -14
 
   # extra space between index and middle finger
   index_spread: ks+1.5
