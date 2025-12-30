@@ -1,9 +1,9 @@
 # Building a keyboard from scratch
 
-## My keyboard and layout journey
+## First steps
 
 My ergonomic keyboard journey started with the Kinesis Advantage 2, many many years ago (I think around 2015, but I'm not sure). I didn't have any write pain or other health issues, but being a software engineer I was aware that I'll sit in from of a computer and type for many more years to come, so why not try something new that can potentially make it more comfortable.
-But I didn't just want to switch to an ergonomic keyboard, I also warted to learn a new layout. Why you might ask? I don't remember. I have a tendency to go all-in on those kind of things. Like, when I switched from Windows to Linux and I decided to go with Arch Linux and a tiling window manager, but that's a different story. I knew about Dvorak, I learend aboud other layouts like Colemak and Workman but none of seemed right for me. This was mainly for two reasons: 1. As a software engineer I often use symbols like brackets, simicolon, etc. and 2. my native languege is German, which has umlauts. Eventually I found the [Neo-layout](https://neo-layout.org), which supported everything I needed, symobols, umlauts and even more. I'm still using the [Neo-layout](https://neo-layout.org) today, eventhough there are more modern variants of it like [Bone](https://neo-layout.org/Layouts/bone/).
+But I didn't just want to switch to an ergonomic keyboard, I also warted to learn a new layout. Why you might ask? I don't remember. I have a tendency to go all-in on those kind of things. Like, when I switched from Windows to Linux and I decided to go with Arch Linux and a tiling window manager, but that's a different story. I knew about Dvorak, I learend about other layouts like Colemak and Workman but none of seemed right for me. This was mainly for two reasons: 1. As a software engineer I often use symbols like brackets, simicolon, etc. and 2. my native languege is German, which has umlauts. Eventually I found the [Neo-layout](https://neo-layout.org), which supported everything I needed, symobols, umlauts and even more. I'm still using the [Neo-layout](https://neo-layout.org) today, eventhough there are more modern variants of it like [Bone](https://neo-layout.org/Layouts/bone/).
 
 ### Using an ergonomic keyboard for the first time
 Using the Kinesis Advantage 2 for the first time was harder than expected. Especially since I started using it with the Neo-layout right away. To not impact my speed at work, I started to only use the Kinesis in the evening when learning the new layout. Due to the different phyiscial keyboards, switching back and forth between my regular keyboard with QUERZ and the Kinesis with Neo was surprisingly easy. Once I got the basics, I started to use the Kinesis when working on hobby projects to get more productive when writing actual code and eventually I completely switched to Neo and the Kinesis.
@@ -20,6 +20,7 @@ In 2021 I learned about home row mods and I was excited. Having the modifiers ri
 ### Home row mods - round 2
 In 2023 I decided to try home row mods again (not really sure why). I read the excellent ["A guide to home row mods"](https://precondition.github.io/home-row-mods) and started to experiment with different tapping terms and other options that [Oryx](https://configure.zsa.io/) exposes. I ended up with this layout: https://configure.zsa.io/moonlander/layouts/MJal0/qRXQK/0. This time home row mods worked well enough that I kept using them and I still use home row mods today in 2025.
 
+## More pre-build keyboards
 ### Corne
 After starting a new job in 2023 where I work both in the office and from home, I initially took my Moonlander to the office and back home every day. And even though the Moonlander is more portable than the Kinesis Advantage, I started looking for a new keyboard that I'd use at home. ZSA just released their [Voyager](https://www.zsa.io/voyager) which seemed ideal, small, less keys, low profile (something I wanted to try for a while). But I like to compare different options when buying things I use every day, so I didn't buy it right away. For month I researched, compared it to the other well known brands like the [Glove80](https://www.moergo.com), the [Kinesis Advantage 360](https://kinesis-ergo.com/keyboards/advantage360/) and many others. Around that time I found the [ErgoMechKeyboards subreddit](https://www.reddit.com/r/ErgoMechKeyboards/) which opened up a whole new world of possibilities. Meaning that it made my decision even harder.
 
@@ -43,7 +44,7 @@ This keyboard worked way better for the size of my hands. Having the thumb keys 
 
 But what now? I already spent hours and hours to find my perfect keyboard, does it even exist? Remember that I said I tend to go all-in on certain things? After being afraid of soldering myself I thought that if I'm going for yet another keyboard, then I'll build it from scratch and so I did.
 
-### Bulding my own keyboard
+## Bulding my own keyboard
 
 I'm not going to describe how one builds a keyboard from scratch, other people already did this very well. The most helpful resource on this was [FlatFootFox's Let's Design A Keyboard With Ergogen v4](https://flatfootfox.com/ergogen-introduction/). It's a step by step guide that explains how to design a PCB from scratch in ergogen, design the case and route everything in KiCAD. It doesn't cover reversible PCBs and some other details that I needed, but was a increadibly helpful starting point. If I'm going to describle the process of building my own keyboard, it will not be part if this text, since this text mainly describes my experience and thought process of how I got were I currently am.
 
@@ -53,13 +54,13 @@ There are a couple of things that I learned from the previous keyboards that I o
 
 - 40-42 keys is what works best for me
 - Low profile because I haven't yet found a good tenting solution and/or the right tenting angle and the flatter the keyboard is the more comfortable it is to type on when it's not tented
-- Wireless, but with a decent battery life
+- Wireless, but with a decent battery life (I used the nice!nano controller)
 - Run ZMK, since HRM worked best with the options that ZMK supported (although QMK is catching up)
-- Displays will be helpful, especially for debuggig when it comes to connectivity
+- Displays will be helpful, especially for debuggig when it comes to connectivity (I used nice!view displays)
 
 With that in mind I started to design my own keyboard in ergogen folloing FlatFootFox's tutorial. Using the online version is very handy, since one can see in real time how the result looks. https://ergogen.xyz/ is the official web based one, but there is also https://ergogen.ceoloide.com/ and https://ergogen.cache.works/ (probably more, but those are the ones I used).
 
-Since I knew nothing about building custom keyboards, I stared simple, just designing one half (the keyboard in the tutorial is not split). I first read all the steps and then started agin, this time following along by applying the described steps to my own keyboard. This took quite a bit of time, especially the routing part was hard for me to grasp at first, but after a couple of tries I had a fully routed PCB. It was only the left half, it was not reversible and it wasn't yet in the exact way I wanted it to be, but it it should be functionial if I didn't scew-up. I order the PCP via https://www.pcbway.com/. This way I could use it to test my design, learn to solder and make sure I have everything covered.
+Since I knew nothing about building custom keyboards, I stared simple, just designing one half (the keyboard in the tutorial is not split). I first read all the steps and then started agin, this time following along by applying the described steps to my own keyboard. This took quite a bit of time, especially the routing part was hard for me to grasp at first, but after a couple of tries I had a fully routed PCB. It was only the left half, it was not reversible and it wasn't yet in the exact way I wanted it to be, but it it should be functionial if I didn't scew-up. I orderd the PCP via https://www.pcbway.com/. This way I could use it to test my design, learn to solder and make sure I have everything covered.
 
 Now that I had the PCB, I wanted to make sure the design fits my hand (that's one of the main reasons why I considered building a keyboard from scratch). Because I knew that I'll have to iterate on the design and that I wanted to print the case myself, I ordered a 3D printer, the Bambu Lab A1 mini. I could have used a service to print the case, but being able to print the case, put some switches in it and test that way was super helpful. But before I started 3D printing, I printed the outlines on paper. This is much faster to get to roughly the correct shape and distribution of the keys. For me especially the tumb positon was tricky. After having an approximation of what I wanted in 2D, I 3D printed the case. I printed *lots* of prototypes until I was satisfied with the result.
 
@@ -80,4 +81,51 @@ At this point I didn't bother to setup a physical layout that can be used with Z
 What I didn't like when setting up a keyboard in ZMK were the error messages. Those were a bit hit or miss. Some of them clearly pointed to the config that was the problem, but some of them didn't give me any clear direction of what to look for. As with most problems, I'd recommend getting a very basic version running and then incrementally changing it to your needs.
 
 #### Make the PCB reversible
-Now that I had a working version of half my keyboard I wanted to make it reversible. This allows me to order one PBC that I can use for both halves. Just make it work both ways, easy right? Well, let me tell you that it wasn't easy for me. But once you unterstand how the keyboard matrix actully works, it becomes mainly a challenge of how to get the routing done. Luckily the footprints I used from ergogen already supported reversible PCBs this helped a lot, especially for the sockets and controller.
+Now that I had a working version of half my keyboard I wanted to make it reversible. This allows me to order one PBC that I can use for both halves. Just make it work both ways, easy right? Well, let me tell you that it wasn't easy for me. But once you unterstand how the keyboard matrix actully works, it becomes mainly a challenge of how to get the routing done. Luckily the footprints I used from ergogen already supported reversible PCBs this helped a lot, especially for the sockets and the controller.
+I don't have a step by step guide to describe how to build a reversible PCB since a lot will depend on the components that are used. As described above, what helped the most was using footprints (the "building blocks" of the PCB) that are reversible in ergogen. If the footprints are reversible then the "Design Rules Checker" in KiCAD can show you what connects you're missing for routing.
+
+#### Let's make it more difficult - adding encoders
+But why stop there? As part of my research I found boards that had rotary encoders and thought: Nice, those have to be very handy for scrolling or to controle the volume. So I decided to add them as well. Which meant I had two more problems:
+1. How to wire them (luckily the nice!nano has enough pins to support encoders)
+2. I wanted to use EVQWGD001, which are no longer produced and pretty hard to get since they're sold out in most shops
+
+To help with 1., there's a very good description on github: [EVQWGD001-Pinout](https://github.com/rroels/EVQWGD001-Pinout). For two, I can't remember where I bought them, but I was able to find some. I later found out that there's now a very low cost (~ 1USD) DIY version: [MEH01](https://github.com/EverydayErgo/MEH01).
+
+#### The first full board
+With that I had my first full board:
+* 40 keys, 2 encoders
+* PCB: reversible, designed in ergogen and ordered via PCBWay
+* Controller: nice!nano
+* Displays: nice!view
+* 200 mAh battery
+* Hotswap Sockets
+* Kailh Choc Red switches (50g, choc v1)
+
+After a bit more debugging (mistakes during soldering and figuring out how encoders work in ZMK), I finally had my first fully functioning split keyboard that I designed myself.
+
+#### Using the v1 prototype
+
+I used it for roughtly 5 months and then decided that I needed to design another one because:
+
+* I didn't like the look of the displays on the keyboard (I wanted to have them flush with the case, which I wasn't able to do)
+* The displays used too much battery (even though they're already a lot better than OLED displays)
+* The battery was too small
+* I liked the design of the Piantor because it's so clean
+
+That's when I decided to use a dongle. This would allow me to have better battery live (the dongle those the heavy lifting instead of the left half).
+
+I also experimented a lot with tenting solutions:
+
+* integrating a MagSafe magnet into the case and using [phone stands](https://eu.ugreen.com/en-ch/products/ugreen-magsafe-360-adjustable-phone-stand) to tilt the keyboard
+* using [camera clamp mounts](https://www.smallrig.com/global/list/Super-Clamp.html) with a [Magnetic Mount Adapts Tripod](https://www.jjc.cc/index/goods/detail.html?id=1336) to tilt the keyboard
+* using either version with and without [wrist rests](https://www.fellowes.com/uk/en/catalog/workspace-ergonomics/ergonomic-accessories/details/wrist-rests/UK-9112301)
+
+I wasn't able to find the ideal tenting angle for me and all of those setups weren't stable enough for me. There's plenty of people reporting that either of these solutions work for them and are rock solid, but they didn't work well for me. Besides the stability problems I also had issues with my thumb. It started to hurt when using the keyboard at an angle. It felt like the thumb keys were too high and the angle at which I hit them/the movement I had to do with my thumb was putting more strain to my thumb than when the keyboard was flat.
+That's when I found Pascal Getreuer's [PSA: Thumbs can get overuse injuries](https://getreuer.info/posts/keyboards/thumb-ergo/index.html), which I highly recommend to read. Those learnings lead to more changes in my keyboard layout. I initially made heavy use of layer switches and meta keys on my thumbs. Those keys are typically held while pressing another switch. I removed almost all of them from my thumb cluster and moved them to other fingers.
+
+Due to tenting not working for me I got obsessed with making the keyboard flatter. Since tenting wasn't working for me and neither did wrist rests, I accepted that the pronation of my forearms will not be ideal and optimized for the remaining things:
+* the split takes care of the ulnar deviation
+* a flat keyboard means less wrist extension even when used without wrist rests and without hovering while typing
+* lighter switcher mean less force is needed to press each switch
+
+#### Bulding the v2 prototype - make it flatter
