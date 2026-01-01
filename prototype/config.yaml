@@ -15,7 +15,7 @@ units:
   # switch dimensions - source: http://www.kailh.com/en/Products/Ks/CS/755.html
   switch_width: 14
   switch_height: 14
-  switch_hole_extra_spacing: 0.75
+  switch_hole_extra_spacing: 0.7
 
   # mcu (Seeed Studio XIAO nRF52840) dimensions - source: https://www.seeedstudio.com/Seeed-XIAO-BLE-nRF52840-p-5201.html
   mcu_width: 17.5
@@ -394,24 +394,25 @@ outlines:
       radius: 1
       adjust.shift: [-3.375, -7.125]
       operation: subtract
+    # right outer rectangle
     - what: rectangle
       size: [3.6, 1.7]
       adjust.shift: [2.375, -5.95]
+    # left outer rectangle
     - what: rectangle
       size: [3.6, 1.7]
       adjust.shift: [-7.325, -3.8]
     - what: rectangle
       size: [2, 0.6]
       adjust.shift: [-6.5, -1.775]
+    # middle hole
     - what: circle
       radius: 2
       adjust.shift: [0, 0]
-    - what: circle
-      radius: 0.6
-      adjust.shift: [-5.5, 0]
-    - what: circle
-      radius: 0.6
-      adjust.shift: [5.5, 0]
+    # added rectangle to cut out
+    - what: rectangle
+      size: 4
+      adjust.shift: [0, -2.5]
 
   _socket_outlines:
     - what: outline
