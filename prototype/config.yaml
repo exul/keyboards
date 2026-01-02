@@ -32,6 +32,8 @@ units:
   battery_switch_height: 4
   battery_switch_width: 2.9
   battery_switch_length: 8
+  battery_switch_cutout_width_tolerance: 2
+  battery_switch_cutout_depth_tolerance: 4
 
   # width of the reset switch: https://cdn.shopify.com/s/files/1/0618/5674/3655/files/PANASONIC-EVQPUC02K.pdf?v=1670451309
   reset_switch_width: 3.5
@@ -172,8 +174,8 @@ units:
   battery_switch_shift_x_from_matrix_inner_home: 0.5ks+mcu_area_width-battery_switch_width/2-battery_switch_edge_clearance
   battery_switch_shift_y_from_matrix_inner_home: 1.25
 
-  battery_switch_wall_cutout_width: battery_switch_length+1
-  battery_switch_wall_cutout_length: battery_switch_width+double_wall_width+battery_switch_edge_clearance+pcb_to_case_wall_tolerance_incl_snap_wall
+  battery_switch_wall_cutout_width: battery_switch_length+battery_switch_cutout_width_tolerance
+  battery_switch_wall_cutout_length: battery_switch_width+battery_switch_cutout_depth_tolerance+double_wall_width+battery_switch_edge_clearance+pcb_to_case_wall_tolerance_incl_snap_wall
   battery_switch_wall_cutout_shift_x_from_matrix_inner_home: battery_switch_shift_x_from_matrix_inner_home+(double_wall_width+pcb_to_case_wall_tolerance_incl_snap_wall+battery_switch_edge_clearance)
   battery_switch_wall_cutout_shift_y_from_matrix_inner_home: battery_switch_shift_y_from_matrix_inner_home
 
@@ -815,10 +817,10 @@ outlines:
 
   _battery_cable_cutout_top_right:
     - what: rectangle
-      where: mirror_matrix_inner_top
+      where: mirror_matrix_inner_bottom
       size: [battery_cable_cutout_top_width, battery_cable_cutout_top_length]
       adjust:
-        ref: mirror_matrix_inner_top
+        ref: mirror_matrix_inner_bottom
         shift:
           [
             battery_cable_cutout_top_shift_x_from_matrix_inner_top,
@@ -827,10 +829,10 @@ outlines:
   
   _battery_cable_cutout_bottom_right:
     - what: rectangle
-      where: mirror_matrix_inner_top
+      where: mirror_matrix_inner_bottom
       size: [battery_cable_cutout_bottom_width, battery_cable_cutout_bottom_length]
       adjust:
-        ref: mirror_matrix_inner_top
+        ref: mirror_matrix_inner_bottom
         shift:
           [
             battery_cable_cutout_bottom_shift_x_from_matrix_inner_top,
@@ -1030,6 +1032,11 @@ cases:
     - what: outline
       name: _mcu_bottom_cutout_right
       extrude: bottom_snap_wall_height # has to have bottom_snap_wall_height because it also has to cut out the snap wall
+      operation: subtract
+    - what: outline
+      name: _jumper_pads_cutout
+      extrude: internal_distance_between_plates+stability_height+bottom_plate_thickness/2
+      shift: [0, 0, bottom_plate_thickness/2]
       operation: subtract
     - what:  outline
       name: _diode_cutout
