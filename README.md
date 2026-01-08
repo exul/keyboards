@@ -22,7 +22,7 @@ In 2023 I decided to try home row mods again (not really sure why). I read the e
 
 ## More pre-build keyboards
 ### Corne
-After starting a new job in 2023 where I work both in the office and from home, I initially took my Moonlander to the office and back home every day. And even though the Moonlander is more portable than the Kinesis Advantage, I started looking for a new keyboard that I'd use at home. ZSA just released their [Voyager](https://www.zsa.io/voyager) which seemed ideal, small, less keys, low profile (something I wanted to try for a while). But I like to compare different options when buying things I use every day, so I didn't buy it right away. For month I researched, compared it to the other well known brands like the [Glove80](https://www.moergo.com), the [Kinesis Advantage 360](https://kinesis-ergo.com/keyboards/advantage360/) and many others. Around that time I found the [ErgoMechKeyboards subreddit](https://www.reddit.com/r/ErgoMechKeyboards/) which opened up a whole new world of possibilities. Meaning that it made my decision even harder.
+After starting a new job in 2023 where I work both in the office and from home, I initially took my Moonlander to the office and back home every day. And even though the Moonlander is more portable than the Kinesis Advantage, I started looking for a new keyboard that I'd use at home. ZSA just released their [Voyager](https://www.zsa.io/voyager) which seemed ideal, small, less keys, low profile (something I wanted to try for a while). But I like to compare different options when buying things I use every day, so I didn't buy it right away. For months I researched, compared it to the other well known brands like the [Glove80](https://www.moergo.com), the [Kinesis Advantage 360](https://kinesis-ergo.com/keyboards/advantage360/) and many others. Around that time I found the [ErgoMechKeyboards subreddit](https://www.reddit.com/r/ErgoMechKeyboards/) which opened up a whole new world of possibilities. Meaning that it made my decision even harder.
 
 I already reduced the number of keys that I used on my Moonlander, so something like a 42 key keyboard seemed like the right option. Since I was quite new to this and didn't want to solder it myself (I didn't even have a soldering iron at the time), I decided to go with something popular and pre-build and after a short conversation with their fantastic support I ordered a Corne from [KeebMaker](https://keebmaker.com).
 
@@ -33,7 +33,7 @@ I made couple of mistakes (they're all fully on me and have nothing to do with t
 
 I tried to mitigate the thumb issue by using lighter switches: 35g Kailh Red Pro, the 20g Kailh Choc Light Blue were too light and I had too many accidental triggers. After that I tried different tenting solutions, like using (SmallRig Camps)[https://www.smallrig.com/smallrig-multi-functional-crab-shaped-clamp-with-ballhead-magic-arm-2164.html] to mount the keyboard to my desk. Changing my keymap to put less stress on my thumbs partially worked but I didn't like any of the options and went back to my original layout.
 
-Along the way I also tried to understand the root cause of the thumb issues I hand and found Pascal's excellent summary: [PSA: Thumbs can get overuse injuries](https://getreuer.info/posts/keyboards/thumb-ergo/index.html). He uses a (keyboard layout)[https://github.com/getreuer/qmk-keymap] where none of the tap holds to switch layers in on the thumb. For me switching to the symbol layer with a none-dedicated key never properly worked. In the end I decided to look for a new keyboard with a better thumb cluster position.
+Along the way I also tried to understand the root cause of the thumb issues I hand and found Pascal's excellent summary: [PSA: Thumbs can get overuse injuries](https://getreuer.info/posts/keyboards/thumb-ergo/index.html). He uses a [keyboard layout](https://github.com/getreuer/qmk-keymap) where none of the tap holds to switch layers in on the thumb. For me switching to the symbol layer with a none-dedicated key never properly worked. In the end I decided to look for a new keyboard with a better thumb cluster position.
 
 ### Piantor Pro
 
@@ -120,12 +120,52 @@ I also experimented a lot with tenting solutions:
 * using [camera clamp mounts](https://www.smallrig.com/global/list/Super-Clamp.html) with a [Magnetic Mount Adapts Tripod](https://www.jjc.cc/index/goods/detail.html?id=1336) to tilt the keyboard
 * using either version with and without [wrist rests](https://www.fellowes.com/uk/en/catalog/workspace-ergonomics/ergonomic-accessories/details/wrist-rests/UK-9112301)
 
-I wasn't able to find the ideal tenting angle for me and all of those setups weren't stable enough for me. There's plenty of people reporting that either of these solutions work for them and are rock solid, but they didn't work well for me. Besides the stability problems I also had issues with my thumb. It started to hurt when using the keyboard at an angle. It felt like the thumb keys were too high and the angle at which I hit them/the movement I had to do with my thumb was putting more strain to my thumb than when the keyboard was flat.
+I wasn't able to find the ideal tenting angle that would feel comfortable and all of those setups weren't stable enough for me. There's plenty of people reporting that either of these solutions work for them and are rock solid, but they didn't work well for me. Besides the stability problems I also had issues with my thumb. It started to hurt when using the keyboard at an angle. It felt like the thumb keys were too high and the angle at which I hit them/the movement I had to do with my thumb was putting more strain to my thumb than when the keyboard was flat.
 That's when I found Pascal Getreuer's [PSA: Thumbs can get overuse injuries](https://getreuer.info/posts/keyboards/thumb-ergo/index.html), which I highly recommend to read. Those learnings lead to more changes in my keyboard layout. I initially made heavy use of layer switches and meta keys on my thumbs. Those keys are typically held while pressing another switch. I removed almost all of them from my thumb cluster and moved them to other fingers.
 
 Due to tenting not working for me I got obsessed with making the keyboard flatter. Since tenting wasn't working for me and neither did wrist rests, I accepted that the pronation of my forearms will not be ideal and optimized for the remaining things:
 * the split takes care of the ulnar deviation
 * a flat keyboard means less wrist extension even when used without wrist rests and without hovering while typing
-* lighter switcher mean less force is needed to press each switch
+* lighter switches mean less force is needed to press each switch
+* [Ripple Thumb Keycaps](https://github.com/nmunnich/ripple-thumb-keycaps) for the thumbs instead of standard 1.5u keys
+
+Besides the ergo aspects I also optimized some of the technical aspects:
+* increased battery life by moving the displays from the keyboard to a dongle
+* increased battery life by using a bigger battery
+* removing the encoders since I didn't use them much
+* switching to Seeed Studio XIAO nRF52840 for the smaller footprint (it's also cheaper)
 
 #### Bulding the v2 prototype - make it flatter
+
+The build process of the v2 was fairly straight forward, since I had existing design. The main work was to update it to the Seeed XIAO's pinout. But there were two additional challanges with that:
+
+1. The XIAO's footprint didn't work on the latest KiCAD
+2. The XIAO footprint is reversible, but puts the routing right below the MCU
+
+The first was in [easy fix](https://github.com/ceoloide/ergogen-footprints/pull/56), for which I provided the changes upstream. The second one was harder. I needed to cut out the part below the MCU from the PCB to be able to make the board whole flatter. To do so I needed to move the routing to the side instead of the MCU. I took me quite some time to figure out how to modify the footprint to support this. The changes is so custom (and ugly) that I only kept it on [my own](https://github.com/exul/ergogen-footprints/) fork of the [ergogen-footprints](https://github.com/ceoloide/ergogen-footprints) repository.
+
+When manufactoring the keyboard I also decided to go with 1mm thickness instead of the standard 1.6mm. I didn't think about the fact that this could cause issues with the hotswap sockets. Luckily everything worked it the end.
+
+I also modified the case to have holes for the hotwap sockets and the diodes (I saw this on the [TOTEM](https://github.com/GEIGEIGEIST/TOTEM)). To do this directy in ergogen I took the socket design that Chad created for his [Charlieflex keyboard](https://github.com/ctranstrum/chuck).
+
+With all those modifications I was able to get to a key hight of 1.5cm and a case hight of 0.5cm.
+
+#### The second full board
+With that I had my first full board:
+* 40 keys, no encoders
+* PCB: reversible, designed in ergogen and ordered via PCBWay
+* Controller: Seeed Studio XIAO nRF52840
+* Dongle: [Prospector](https://github.com/carrefinho/prospector) later switched to [ZMK Dongle Screen YADS (Yet another Dongle Screen)](https://github.com/janpfischer/zmk-dongle-screen), which is heavily inspired by the Prospector
+* 500 mAh battery
+* Hotswap Sockets
+* Ambients Silent Choc Switches: Nocturnal [Low Profile Switches](https://lowprokb.ca/products/ambients-silent-choc-switches?variant=44873446391972) (20g, choc v1) and [Twilight Low Profile Switches](https://lowprokb.ca/products/ambients-silent-choc-switches) (35g, chock v1), I used the Twilight switches after trying both since the Nocturnals where too light for me
+* [Ripple Thumb Keycaps](https://github.com/nmunnich/ripple-thumb-keycaps) for the thumbs
+
+#### Using the v2 prototype
+
+I used this version of the keyboard for about 6 months. But as you might have guessed I identified some issues. Because the board was so thin, the stability of the board was bad. The solered hotswap sockets caused the PCB to bend slightly and the very thin case didn't help either. I also took the thinness of the case unreasonably far, since even though it was just 0.5cm the switches did stick out about 1mm, meaning to have a case that would actually fit the switches would be 0.6cm. And while the Ambients Silent Choc Switches where a huge improvement over the reds, I was still looking for better options. I liked the low travel distance of the check switches, but I still prefered the overall feel of MX switches. It was time to try choc v2 switches as they seemed to be the best mix of the two worlds.
+
+Optimizations for v3:
+* choc v2 switches
+* slightly adjusted thumb position
+* thicker PCB for stability
