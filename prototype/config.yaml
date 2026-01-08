@@ -33,7 +33,7 @@ units:
   battery_switch_width: 2.9
   battery_switch_length: 8
   battery_switch_cutout_width_tolerance: 2
-  battery_switch_cutout_depth_tolerance: 4
+  battery_switch_cutout_depth_tolerance: 6
 
   # width of the reset switch: https://cdn.shopify.com/s/files/1/0618/5674/3655/files/PANASONIC-EVQPUC02K.pdf?v=1670451309
   reset_switch_width: 3.5
