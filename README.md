@@ -83,6 +83,7 @@ What I didn't like when setting up a keyboard in ZMK were the error messages. Th
 #### Make the PCB reversible
 Now that I had a working version of half my keyboard I wanted to make it reversible. This allows me to order one PBC that I can use for both halves. Just make it work both ways, easy right? Well, let me tell you that it wasn't easy for me. But once you unterstand how the keyboard matrix actully works, it becomes mainly a challenge of how to get the routing done. Luckily the footprints I used from ergogen already supported reversible PCBs this helped a lot, especially for the sockets and the controller.
 I don't have a step by step guide to describe how to build a reversible PCB since a lot will depend on the components that are used. As described above, what helped the most was using footprints (the "building blocks" of the PCB) that are reversible in ergogen. If the footprints are reversible then the "Design Rules Checker" in KiCAD can show you what connects you're missing for routing.
+Another change was to cut out a rectangle to support a bigger battery without making the case thicker. I don't remember where I got the idea from, but after going through my bookmarks, my inspiration probably was the [Lintilla](https://github.com/ctranstrum/lintilla).
 
 #### Let's make it more difficult - adding encoders
 But why stop there? As part of my research I found boards that had rotary encoders and thought: Nice, those have to be very handy for scrolling or to controle the volume. So I decided to add them as well. Which meant I had two more problems:
@@ -99,7 +100,8 @@ With that I had my first full board:
 * Displays: nice!view
 * 200 mAh battery
 * Hotswap Sockets
-* Kailh Choc Red switches (50g, choc v1)
+* Kailh Choc Red switches (50g, linear, choc v1)
+* Choc spacing
 
 After a bit more debugging (mistakes during soldering and figuring out how encoders work in ZMK), I finally had my first fully functioning split keyboard that I designed myself.
 
@@ -112,7 +114,7 @@ I used it for roughtly 5 months and then decided that I needed to design another
 * The battery was too small
 * I liked the design of the Piantor because it's so clean
 
-That's when I decided to use a dongle. This would allow me to have better battery live (the dongle those the heavy lifting instead of the left half).
+That's when I decided to use a dongle. This would allow me to have better battery life (the dongle those the heavy lifting instead of the left half).
 
 I also experimented a lot with tenting solutions:
 
@@ -150,6 +152,14 @@ I also modified the case to have holes for the hotwap sockets and the diodes (I 
 
 With all those modifications I was able to get to a key hight of 1.5cm and a case hight of 0.5cm.
 
+<div style="text-align: center;">the v2 with the initial version of the case that is just 0.5cm high</div>
+
+![A block keyboard with white key caps viewed from the side](prototype/img/v2_hight.jpg "v2 hight")
+
+<div style="text-align: center;">the v2 on my desk with the dongle below the screen and a newer version of the case</div>
+
+![A desk with a white ergonomic keyboard on it](prototype/img/v2_full.jpg "v2 on desk with dongle")
+
 #### The second full board
 With that I had my first full board:
 * 40 keys, no encoders
@@ -158,14 +168,37 @@ With that I had my first full board:
 * Dongle: [Prospector](https://github.com/carrefinho/prospector) later switched to [ZMK Dongle Screen YADS (Yet another Dongle Screen)](https://github.com/janpfischer/zmk-dongle-screen), which is heavily inspired by the Prospector
 * 500 mAh battery
 * Hotswap Sockets
-* Ambients Silent Choc Switches: Nocturnal [Low Profile Switches](https://lowprokb.ca/products/ambients-silent-choc-switches?variant=44873446391972) (20g, choc v1) and [Twilight Low Profile Switches](https://lowprokb.ca/products/ambients-silent-choc-switches) (35g, chock v1), I used the Twilight switches after trying both since the Nocturnals where too light for me
+* Ambients Silent Choc Switches: Nocturnal [Low Profile Switches](https://lowprokb.ca/products/ambients-silent-choc-switches?variant=44873446391972) (20g, choc v1) and [Twilight Low Profile Switches](https://lowprokb.ca/products/ambients-silent-choc-switches) (35g, linear, choc v1), I used the Twilight switches after trying both since the Nocturnals where too light for me
+* Choc spacing
 * [Ripple Thumb Keycaps](https://github.com/nmunnich/ripple-thumb-keycaps) for the thumbs
 
 #### Using the v2 prototype
 
 I used this version of the keyboard for about 6 months. But as you might have guessed I identified some issues. Because the board was so thin, the stability of the board was bad. The solered hotswap sockets caused the PCB to bend slightly and the very thin case didn't help either. I also took the thinness of the case unreasonably far, since even though it was just 0.5cm the switches did stick out about 1mm, meaning to have a case that would actually fit the switches would be 0.6cm. And while the Ambients Silent Choc Switches where a huge improvement over the reds, I was still looking for better options. I liked the low travel distance of the check switches, but I still prefered the overall feel of MX switches. It was time to try choc v2 switches as they seemed to be the best mix of the two worlds.
+When typing a lot I sometimes hit neightbouring keys by accident. I'm not sure if that's because of my big hands or due to the light switches, but I decided to change the spacing to MX spacing, which would also make it easier to find keycaps.
 
 Optimizations for v3:
 * choc v2 switches
 * slightly adjusted thumb position
 * thicker PCB for stability
+* MX spacing
+
+#### Bulding the v3 prototype - make it thicker
+
+Since the footprint for the switches that I used was already compatible with choc v2 switches I didn't have to change much. I printed a couple of cases to test the thumb position and had to adjust the bottom of the case for the v2 choc switches and that was about it.
+
+<div style="text-align: center;">the v2 on my desk with the dongle below the screen</div>
+
+![A desk with a white ergonomic keyboard on it](prototype/img/v3_full.jpg "v3 on desk with dongle")
+
+#### The second full board
+With that I had my first full board:
+* 40 keys, no encoders
+* PCB: reversible, designed in ergogen and ordered via PCBWay
+* Controller: Seeed Studio XIAO nRF52840
+* Dongle: [ZMK Dongle Screen YADS (Yet another Dongle Screen)](https://github.com/janpfischer/zmk-dongle-screen)
+* 500 mAh battery
+* Hotswap Sockets
+* Choc v2 Switches: Kailh Deep Sea Silent Mini (50g, linear, choc v2), they felt too heavy and I ordered Kailh Purple Swallowtail Mini (30g, Linear) and Kailh Deep Sea Mini Pink Island Silent (35g, linear)
+* MX spacing
+* [Ripple Thumb Keycaps](https://github.com/nmunnich/ripple-thumb-keycaps) for the thumbs
