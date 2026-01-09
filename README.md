@@ -1,8 +1,14 @@
+# Disclaimer
+
+The files in this repository are meant as inspiration for others who want to build a keyboard from scratch as well. You can build the keyboard yourself with the files provided here but be aware that it's not beginner friendly. The MCU is soldered directly on the PCB, the power connection from the PCB to the XIAO needs to be soldered manually, there is not reset button (you'll need to short GND and RST on the exposed XIAO) and the battery is soldered direclty onto the PCB as well. 
+
 # Building a keyboard from scratch
+
+The text below describes my journey of using and building ergonomic keyboards. If you're thinking about building a keyboard yourself, it might help you to read what decisions I took and why. Or maybe your just nerdy and want to read how others ended up in the rabbit hole of ergonomic keyboards. Either way, I hope you find the text interesting and learn a thing or two about ergonomic keyboards.
 
 ## First steps
 
-My ergonomic keyboard journey started with the Kinesis Advantage 2, many many years ago (I think around 2015, but I'm not sure). I didn't have any write pain or other health issues, but being a software engineer I was aware that I'll sit in from of a computer and type for many more years to come, so why not try something new that can potentially make it more comfortable.
+My ergonomic keyboard journey started with the Kinesis Advantage 2, many many years ago (I think around 2015, but I'm not sure). I didn't have any wrist pain or other health issues, but being a software engineer I was aware that I'll sit in front of a computer and type for many more years to come, so why not try something new that can potentially make it more comfortable.
 But I didn't just want to switch to an ergonomic keyboard, I also warted to learn a new layout. Why you might ask? I don't remember. I have a tendency to go all-in on those kind of things. Like, when I switched from Windows to Linux and I decided to go with Arch Linux and a tiling window manager, but that's a different story. I knew about Dvorak, I learend about other layouts like Colemak and Workman but none of seemed right for me. This was mainly for two reasons: 1. As a software engineer I often use symbols like brackets, simicolon, etc. and 2. my native languege is German, which has umlauts. Eventually I found the [Neo-layout](https://neo-layout.org), which supported everything I needed, symobols, umlauts and even more. I'm still using the [Neo-layout](https://neo-layout.org) today, eventhough there are more modern variants of it like [Bone](https://neo-layout.org/Layouts/bone/).
 
 ### Using an ergonomic keyboard for the first time
@@ -104,6 +110,10 @@ With that I had my first full board:
 * Choc spacing
 
 After a bit more debugging (mistakes during soldering and figuring out how encoders work in ZMK), I finally had my first fully functioning split keyboard that I designed myself.
+
+The first version of the keyboard with EVQWGD001 encoders and Nice!View displays:
+
+![An ergonomic keyboard with a trackpad in the middle](prototype/img/v1_top_view.png "v1 top view")
 
 #### Using the v1 prototype
 
