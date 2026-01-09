@@ -152,13 +152,13 @@ I also modified the case to have holes for the hotwap sockets and the diodes (I 
 
 With all those modifications I was able to get to a key hight of 1.5cm and a case hight of 0.5cm.
 
-<div style="text-align: center;">the v2 with the initial version of the case that is just 0.5cm high</div>
+The v2 with the initial version of the case that is just 0.5cm high:
 
-![A block keyboard with white key caps viewed from the side](prototype/img/v2_hight.jpg "v2 hight")
+![A block keyboard with white key caps viewed from the side](prototype/img/v2_hight.png "v2 hight")
 
-<div style="text-align: center;">the v2 on my desk with the dongle below the screen and a newer version of the case</div>
+The v2 on my desk with the dongle below the screen and a newer version of the case:
 
-![A desk with a white ergonomic keyboard on it](prototype/img/v2_full.jpg "v2 on desk with dongle")
+![A desk with a white ergonomic keyboard on it](prototype/img/v2_full.png "v2 on desk with dongle")
 
 #### The second full board
 With that I had my first full board:
@@ -187,9 +187,9 @@ Optimizations for v3:
 
 Since the footprint for the switches that I used was already compatible with choc v2 switches I didn't have to change much. I printed a couple of cases to test the thumb position and had to adjust the bottom of the case for the v2 choc switches and that was about it.
 
-<div style="text-align: center;">the v2 on my desk with the dongle below the screen</div>
+The v2 on my desk with the dongle below the screen:
 
-![A desk with a white ergonomic keyboard on it](prototype/img/v3_full.jpg "v3 on desk with dongle")
+![A desk with a white ergonomic keyboard on it](prototype/img/v3_full.png "v3 on desk with dongle")
 
 #### The second full board
 With that I had my first full board:
