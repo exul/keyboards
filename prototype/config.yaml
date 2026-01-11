@@ -1,3 +1,5 @@
+# This config makes use of custom footprints that only work with a locally run version of Ergogen and will not work with the web version of Ergogen.
+# If you're looking for a config that you can modify in Ergogen web, there's a version that only uses built-in footprints here (but it won't generate a working PCB since some footprints aren't available at all in Ergogen, and for some, the pinout doesn't match with the custom footprint): https://gist.github.com/exul/7b3d09b1ea04f9b52bd185b6bea1cb12
 units:
   # choc v1 switches
   $default_width: U
